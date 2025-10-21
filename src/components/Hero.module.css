@@ -1,0 +1,32 @@
+/* src/components/Hero.module.css */
+
+/* Ini akan menjadi 'className' unik, cth: Hero_heroContainer__XyZ12 */
+.heroContainer {
+    background-color: #004a99; /* Biru tua, ganti sesuai warna sekolah */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?school,building');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 40px;
+    text-align: center;
+  }
+  
+  .heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .heroTitle {
+    font-size: 3.5rem; /* 56px */
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.5rem; /* 24px */
+    margin-bottom: 40px;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+  
+  

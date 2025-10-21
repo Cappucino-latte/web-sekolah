@@ -1,0 +1,512 @@
+/* src/pages/Home.module.css */
+
+.homeWrapper {
+  overflow-x: hidden;
+
+  /* --- Variabel untuk Konsistensi Profesional --- */
+  --color-text-dark: #1a1a2e;
+  --color-text-body: #555;
+  --color-text-muted: #666;
+  --color-primary: #0d6efd;
+  --color-primary-dark: #0a58ca;
+  --color-success: #198754;
+  --color-dark-bg: #16213e;
+  --color-light-bg: #f8f9fa;
+  --color-soft-bg: #f0f8ff;
+  --color-white: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  --radius-card: 16px; /* Standarisasi border-radius (dari 16px & 20px) */
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+  --transition-curve: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== SECTION STYLES ========== */
+.sectionPadding {
+  padding: 96px 0; /* 96px lebih umum digunakan dalam sistem spasi */
+}
+
+.sectionLight {
+  background: linear-gradient(
+    135deg,
+    var(--color-light-bg) 0%,
+    var(--color-white) 100%
+  );
+}
+
+.sectionDark {
+  background: linear-gradient(
+    135deg,
+    var(--color-text-dark) 0%,
+    var(--color-dark-bg) 100%
+  );
+  color: var(--color-white);
+}
+
+.sectionSoft {
+  background: linear-gradient(
+    135deg,
+    var(--color-soft-bg) 0%,
+    #e6f2ff 100%
+  );
+}
+
+.sectionHeader {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+  line-height: 1.3; /* Sedikit lebih longgar untuk keterbacaan */
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7; /* Standarisasi line-height */
+}
+
+.sectionHeading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.4; /* Sedikit lebih longgar */
+  margin-bottom: 1.5rem;
+}
+
+.sectionDark .sectionHeading,
+.sectionDark .sectionDesc {
+  color: var(--color-white);
+}
+
+.sectionDesc {
+  font-size: 1.1rem;
+  color: var(--color-text-body);
+  line-height: 1.7; /* Standarisasi line-height */
+}
+
+.highlightText {
+  color: #0dcaf0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* ========== NEWS SECTION ========== */
+.newsCard {
+  transition: all var(--transition-speed) var(--transition-curve);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+  height: 100%;
+  border: 1px solid var(--color-border); /* Border subtil */
+  box-shadow: var(--shadow-base); /* Shadow dasar */
+  cursor: pointer;
+}
+
+.newsCard:hover,
+.newsCard:focus-visible { /* Menambahkan state :focus-visible */
+  transform: translateY(-8px); /* Lebih subtil dari -12px */
+  box-shadow: var(--shadow-hover); /* Shadow hover (tanpa !important) */
+}
+
+.newsCard:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.newsTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+}
+
+.newsDate {
+  font-size: 0.875rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.newsExcerpt {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.newsButton {
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: all var(--transition-speed) ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.newsButton:hover {
+  color: var(--color-primary-dark);
+  transform: translateX(4px);
+}
+
+/* ========== PROGRAM SECTION ========== */
+.programCard {
+  border-radius: var(--radius-card); /* Standarisasi */
+  overflow: hidden;
+  transition: all var(--transition-speed) var(--transition-curve);
+  box-shadow: var(--shadow-base); /* Menambahkan shadow dasar */
+}
+
+.programCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover); /* Shadow konsisten */
+}
+
+.programImageWrapper {
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+}
+
+.programImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--transition-curve); /* Transisi lebih halus */
+}
+
+.programCard:hover .programImage {
+  transform: scale(1.1); /* Sedikit lebih subtil */
+}
+
+.programOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.programCard:hover .programOverlay {
+  opacity: 1;
+}
+
+.programContent {
+  transform: translateY(20px);
+  transition: transform 0.4s var(--transition-curve);
+}
+
+.programCard:hover .programContent {
+  transform: translateY(0);
+}
+
+.programTitle {
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.programDesc {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.programLink {
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--transition-speed) ease;
+}
+
+.programLink:hover {
+  gap: 0.75rem;
+  color: var(--color-white);
+}
+
+.joinButton {
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+}
+
+.joinButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== BEASISWA SECTION ========== */
+.beasiswaList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.beasiswaList li {
+  padding: 0.75rem 0;
+  font-size: 1.05rem;
+  color: var(--color-text-body);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.beasiswaList li:last-child {
+  border-bottom: none;
+}
+
+.beasiswaButton {
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+}
+
+.beasiswaButton:hover,
+.beasiswaButton:focus-visible {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.3);
+}
+
+.beasiswaCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card); /* Standarisasi */
+  height: 300px;
+  cursor: pointer;
+}
+
+.beasiswaImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--transition-curve); /* Sedikit lebih lambat */
+}
+
+.beasiswaCard:hover .beasiswaImage {
+  transform: scale(1.1); /* Lebih subtil dari 1.15 */
+}
+
+.beasiswaOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3) 70%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  transition: background 0.4s ease;
+}
+
+.beasiswaCard:hover .beasiswaOverlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.5) 70%,
+    transparent 100%
+  );
+}
+
+.beasiswaContent {
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+}
+
+.beasiswaTitle {
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.beasiswaText {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ========== POTENTIAL SECTION ========== */
+.potentialImageWrapper {
+  position: relative;
+}
+
+.potentialImage {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--radius-card); /* Standarisasi */
+}
+
+.imageAccent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-dark-bg) 100%
+  );
+  border-radius: var(--radius-card); /* Standarisasi */
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+}
+
+.infoCard {
+  background: var(--color-white);
+  transition: all var(--transition-speed) var(--transition-curve);
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--radius-card); /* Standarisasi */
+  box-shadow: var(--shadow-base); /* Shadow dasar */
+}
+
+.infoCard:hover,
+.infoCard:focus-visible { /* Menambahkan :focus-visible */
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover); /* Shadow hover (tanpa !important) */
+  border-color: var(--color-primary);
+}
+
+.infoCard:focus-visible {
+  outline: none; /* Border sudah cukup sebagai indikator focus */
+}
+
+.infoIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.infoCardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.infoCardDesc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ========== CTA SECTION ========== */
+.ctaSection {
+  background: linear-gradient(
+    135deg,
+    var(--color-dark-bg) 0%,
+    #14264d 100%
+  );
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.ctaTitle {
+  font-size: 2.75rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  color: var(--color-white);
+}
+
+.ctaSubtitle {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  opacity: 0.9; /* Sedikit lebih subtil dari 0.95 */
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 991px) {
+  .sectionPadding {
+    padding: 64px 0; /* 64px lebih umum digunakan */
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.75rem;
+  }
+
+  .ctaTitle {
+    font-size: 2rem;
+  }
+
+  .ctaSubtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.5rem;
+  }
+
+  .programImageWrapper {
+    height: 220px;
+  }
+
+  .beasiswaCard {
+    height: 250px;
+  }
+
+  .ctaTitle {
+    font-size: 1.75rem;
+  }
+
+  .imageAccent {
+    top: 10px;
+    left: 10px;
+  }
+}

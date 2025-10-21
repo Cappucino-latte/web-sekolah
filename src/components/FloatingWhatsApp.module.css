@@ -1,0 +1,371 @@
+/* src/components/FloatingWhatsApp.module.css */
+
+/* ========== FLOAT WRAPPER ========== */
+.floatWrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  opacity: 0;
+  transform: scale(0) translateY(20px);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.floatWrapper.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ========== FLOAT BUTTON ========== */
+.floatButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 20px rgba(37, 211, 102, 0.4),
+    0 8px 40px rgba(37, 211, 102, 0.2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  overflow: visible;
+  /* animation: bounce 2s infinite; <-- DIHAPUS */
+}
+
+.floatButton:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 
+    0 8px 30px rgba(37, 211, 102, 0.5),
+    0 12px 50px rgba(37, 211, 102, 0.3);
+}
+
+.floatButton:active {
+  transform: scale(0.95);
+  box-shadow: 
+    0 2px 15px rgba(37, 211, 102, 0.4),
+    0 4px 25px rgba(37, 211, 102, 0.2);
+}
+
+/* ========== ICON ========== */
+.icon {
+  position: relative;
+  z-index: 2;
+  color: white;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.floatButton:hover .icon {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* ========== RIPPLE EFFECT ========== */
+.ripple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  /* animation: ripple 2s infinite; <-- DIHAPUS */
+  pointer-events: none;
+}
+
+/* @keyframes ripple <-- DIHAPUS */
+
+/* ========== BOUNCE ANIMATION ========== */
+/* @keyframes bounce <-- DIHAPUS */
+
+/* .floatButton:hover { animation: none; } <-- DIHAPUS */
+
+/* ========== NOTIFICATION BADGE ========== */
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, #FF4757 0%, #E84118 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+  border: 2px solid white;
+  /* animation: pulse 2s infinite; <-- DIHAPUS */
+}
+
+/* @keyframes pulse <-- DIHAPUS */
+
+/* ========== TOOLTIP ========== */
+.tooltip {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 280px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.tooltip.tooltipVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.tooltipContent {
+  padding: 20px;
+}
+
+.tooltipHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.avatarWrapper {
+  position: relative;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.statusOnline {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  background: #25D366;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.4);
+}
+
+.tooltipInfo {
+  flex: 1;
+}
+
+.tooltipTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.tooltipStatus {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background: #25D366;
+  border-radius: 50%;
+  /* animation: blink 2s infinite; <-- DIHAPUS */
+}
+
+/* @keyframes blink <-- DIHAPUS */
+
+.tooltipText {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tooltipArrow {
+  position: absolute;
+  bottom: -8px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  transform: rotate(45deg);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== CLOSE BUTTON ========== */
+.closeTooltip {
+  position: fixed;
+  bottom: 360px;
+  right: 290px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.closeTooltip:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.closeTooltip:active {
+  transform: scale(0.95);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .floatWrapper {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floatButton {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tooltip {
+    width: 260px;
+    bottom: 70px;
+    right: -10px;
+  }
+
+  .tooltipArrow {
+    right: 25px;
+  }
+
+  .closeTooltip {
+    bottom: 340px;
+    right: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tooltip {
+    width: calc(100vw - 80px);
+    right: -10px;
+  }
+
+  .closeTooltip {
+    right: calc(100vw - 70px);
+  }
+}
+
+/* ========== DARK MODE SUPPORT ========== */
+@media (prefers-color-scheme: dark) {
+  .tooltip {
+    background: rgba(26, 26, 46, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .tooltipTitle {
+    color: white;
+  }
+
+  .tooltipStatus,
+  .tooltipText {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .tooltipArrow {
+    background: rgba(26, 26, 46, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: none;
+    border-bottom: none;
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+  .floatButton,
+  .ripple,
+  .badge,
+  .tooltip {
+    /* animation: none !important; <-- DIHAPUS KARENA REDUNDAN */
+    transition: none !important;
+  }
+
+  .floatWrapper.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Focus states for accessibility */
+.floatButton:focus-visible {
+  outline: 3px solid rgba(37, 211, 102, 0.5);
+  outline-offset: 4px;
+}
+
+.closeTooltip:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* ========== HOVER EFFECTS ========== */
+@media (hover: hover) {
+  .tooltip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .floatButton:hover ~ .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  .floatWrapper,
+  .closeTooltip {
+    display: none !important;
+  }
+}

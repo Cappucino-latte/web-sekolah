@@ -1,0 +1,29 @@
+/* src/components/Footer.module.css */
+
+.footerSection {
+    /* Perkiraan warna kuning/emas dari screenshot */
+    background-color: #0f1736;
+    color: #ffffff; /* Teks hitam/gelap agar terbaca */
+    padding: 50px 0;
+    margin-top: 50px; /* Jarak dari konten di atasnya */
+  }
+  
+  .footerLogo {
+    max-width: 180px; /* Ukuran logo sekolah */
+    margin-bottom: 20px;
+  }
+  
+  .contactInfo {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .contactInfo p {
+    margin-bottom: 5px; /* Jarak antar baris alamat */
+  }
+  
+  .accreditationLogo {
+    max-height: 70px; /* Menyamakan tinggi logo-logo partner */
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }

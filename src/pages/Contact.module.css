@@ -1,0 +1,21 @@
+/* src/pages/Contact.module.css */
+
+.pageHeader {
+    padding: 60px 20px;
+    background-color: #f8f9fa; /* Latar abu-abu muda */
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .pageTitle {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  .mapWrapper {
+    /* Wrapper ini untuk membuat iframe peta terlihat rapi */
+    border-radius: 15px;
+    overflow: hidden; /* Penting agar border-radius berfungsi di iframe */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
