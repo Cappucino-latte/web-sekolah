@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Home, User, Settings } from "lucide-react"; 
+import { LogOut, Home, User, Settings, Newspaper, Award, ClipboardList } from "lucide-react";
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -26,15 +26,28 @@ function Sidebar() {
             <Home size={18} />
             <span>Dashboard</span>
           </li>
-          <li onClick={() => navigate("/admin/users")} className="sidebar-item">
-            <User size={18} />
-            <span>Kelola User</span>
-          </li>
-          <li onClick={() => navigate("/admin/settings")} className="sidebar-item">
-            <Settings size={18} />
-            <span>Pengaturan</span>
-          </li>
-        </ul>
+
+  <li onClick={() => navigate("/admin/users")} className="sidebar-item">
+    <User size={18} />
+    <span>Kelola User</span>
+  </li>
+
+  <li onClick={() => navigate("/admin/program")} className="sidebar-item">
+    <ClipboardList size={18} />
+    <span>Program</span>
+  </li>
+
+  <li onClick={() => navigate("/admin/berita")} className="sidebar-item">
+    <Newspaper size={18} />
+    <span>Berita</span>
+  </li>
+
+  <li onClick={() => navigate("/admin/prestasi")} className="sidebar-item">
+    <Award size={18} />
+    <span>Prestasi</span>
+  </li>
+</ul>
+
       </div>
 
       {/* LOGOUT */}

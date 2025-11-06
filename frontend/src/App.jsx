@@ -11,9 +11,11 @@ import Footer from "./components/Footer.jsx";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard.jsx";
+import AdminUsers from "./pages/AdminUser.jsx";
 
 import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminLayout from "./layouts/AdminLayout.jsx";
 
 function App() {
   return (
@@ -32,13 +34,26 @@ function App() {
 
       {/* ROUTE DASHBOARD TIDAK MENGGUNAKAN LAYOUT ✅ */}
       <Route
-        path="/admin/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
+  path="/admin/dashboard"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <Dashboard />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/admin/users"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminUsers />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
 
     </Routes>
   );
