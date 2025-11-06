@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.css";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -20,67 +21,49 @@ function Login() {
         localStorage.setItem("token", data.token);
         navigate("/admin/dashboard");
       } else {
-        alert(data.message || "Username atau password salah");
+        alert(data.message || "Login gagal");
       }
     } catch (err) {
-      console.error(err);
-      alert("Terjadi kesalahan koneksi ke server.");
+      console.error("Login error:", err);
+      alert("Gagal terhubung ke server");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
-      <div className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md transition-all duration-300 hover:shadow-indigo-300/50">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
-          Selamat Datang 👋
-        </h2>
-        <p className="text-center text-gray-500 mb-8 text-sm">
-          Silakan masuk ke akun admin Anda
-        </p>
+    <div className={styles.wrapper}>
+      <div className={styles.card}>
+        <h2>Login Admin</h2>
+        <p>Masuk untuk melanjutkan ke dashboard</p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Username */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Username
-            </label>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <label>Username</label>
             <input
               type="text"
               placeholder="Masukkan username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
               required
             />
           </div>
 
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Kata Sandi
-            </label>
+          <div className={styles.inputGroup}>
+            <label>Password</label>
             <input
               type="password"
-              placeholder="Masukkan kata sandi"
+              placeholder="Masukkan password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
               required
             />
           </div>
 
-          {/* Tombol Login */}
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 hover:scale-[1.02] transition-transform duration-200 shadow-md"
-          >
-            Masuk
-          </button>
+          <button type="submit">Login</button>
         </form>
 
-        <p className="text-center text-xs text-gray-500 mt-8">
-          © {new Date().getFullYear()} <span className="font-semibold">Sekolah Pintar</span> • All rights reserved
-        </p>
+        <span className={styles.footer}>
+          © {new Date().getFullYear()} Sekolah Pintar
+        </span>
       </div>
     </div>
   );
