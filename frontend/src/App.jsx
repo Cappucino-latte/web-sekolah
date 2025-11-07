@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard.jsx";
 import AdminUsers from "./pages/AdminUser.jsx";
+import AdminBerita from "./pages/AdminBerita.jsx";
 
 import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
 import PrivateRoute from "./components/PrivateRoute";
@@ -32,7 +33,7 @@ function App() {
         <Route path="register" element={<Register />} />
       </Route>
 
-      {/* ROUTE DASHBOARD TIDAK MENGGUNAKAN LAYOUT ✅ */}
+      {/* ROUTE DASHBOARD MENGGUNAKAN LAYOUT ✅ */}
       <Route
   path="/admin/dashboard"
   element={
@@ -50,6 +51,17 @@ function App() {
     <PrivateRoute>
       <AdminLayout>
         <AdminUsers />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/admin/berita"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminBerita />
       </AdminLayout>
     </PrivateRoute>
   }
