@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -13,6 +13,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard.jsx";
 import AdminUsers from "./pages/AdminUser.jsx";
 import AdminBerita from "./pages/AdminBerita.jsx";
+import AdminPrestasi from "./pages/AdminPrestasi.jsx";
+import DetailPrestasi from "./pages/DetailPrestasi";
 
 import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
 import PrivateRoute from "./components/PrivateRoute";
@@ -31,8 +33,11 @@ function App() {
         <Route path="prestasi" element={<Prestasi />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="prestasi" element={<Prestasi />} />
+        <Route path="detail-prestasi/:id" element={<DetailPrestasi />} />
       </Route>
 
+    
       {/* ROUTE DASHBOARD MENGGUNAKAN LAYOUT ✅ */}
       <Route
   path="/admin/dashboard"
@@ -67,6 +72,16 @@ function App() {
   }
 />
 
+<Route
+  path="/admin/prestasi"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminPrestasi />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
     </Routes>
   );
 }
