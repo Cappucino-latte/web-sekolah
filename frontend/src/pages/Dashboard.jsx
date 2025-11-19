@@ -1,19 +1,15 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Fade } from "react-awesome-reveal";
 import styles from "./Dashboard.module.css";
 
 function Dashboard() {
   return (
-    <div className={styles.dashboardContainer}>
-      <Sidebar />
+    <div className={styles.container}>
+      <Container fluid>
 
-      <div className={styles.dashboardContent}>
-        <Container fluid>
-
-          <Fade direction="down" triggerOnce>
-            <h2 className={styles.title}>Dashboard Admin</h2>
+        <Fade direction="down" triggerOnce>
+          <h2 className={styles.title}>Dashboard Admin</h2>
             <p className={styles.subtitle}>Selamat datang di panel admin sekolah.</p>
           </Fade>
 
@@ -48,7 +44,6 @@ function Dashboard() {
 
           </Row>
         </Container>
-      </div>
     </div>
   );
 }

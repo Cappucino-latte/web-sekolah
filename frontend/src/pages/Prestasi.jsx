@@ -23,7 +23,7 @@ export default function Prestasi() {
   }, []);
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} style={{ paddingTop: '80px' }}>
       <header className={styles.header}>
         <h1>Galeri Prestasi</h1>
         <p className={styles.lead}>Prestasi siswa kami — sorotan terbaik.</p>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
 import { supabase } from "../lib/supabaseClient";
 import styles from "./AdminUser.module.css";
 
@@ -49,12 +48,10 @@ export default function AdminUsers() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <Sidebar />
-      <div className={styles.content}>
-        <h2>Kelola Admin</h2>
+    <div className={styles.container}>
+      <h2>Kelola Admin</h2>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form}>
           <input
             placeholder="Username"
             value={form.username}
@@ -86,14 +83,15 @@ export default function AdminUsers() {
               <tr key={a.id}>
                 <td>{a.username}</td>
                 <td>
-                  <button onClick={() => handleEdit(a)}>Edit</button>
-                  <button onClick={() => handleDelete(a.id)}>Hapus</button>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button onClick={() => handleEdit(a)}>Edit</button>
+                    <button onClick={() => handleDelete(a.id)}>Hapus</button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
     </div>
   );
 }

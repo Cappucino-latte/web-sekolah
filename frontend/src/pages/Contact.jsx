@@ -9,7 +9,7 @@ import styles from './Contact.module.css';
 
 function Contact() {
   return (
-    <div>
+    <div style={{ paddingTop: '80px' }}>
       {/* 1. BAGIAN JUDUL HALAMAN */}
       <div className={styles.pageHeader}>
         <Container>

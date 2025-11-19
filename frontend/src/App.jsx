@@ -5,6 +5,10 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Berita from "./pages/Berita.jsx";
 import Prestasi from "./pages/Prestasi.jsx";
+import Sejarah from "./pages/Sejarah.jsx";
+import VisiMisi from "./pages/VisiMisi.jsx";
+import Struktur from "./pages/Struktur.jsx";
+import Fasilitas from "./pages/Fasilitas.jsx";
 
 import MainNavbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -15,6 +19,7 @@ import AdminUsers from "./pages/AdminUser.jsx";
 import AdminBerita from "./pages/AdminBerita.jsx";
 import AdminPrestasi from "./pages/AdminPrestasi.jsx";
 import DetailPrestasi from "./pages/DetailPrestasi";
+import DetailBerita from "./pages/DetailBerita";
 
 import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
 import PrivateRoute from "./components/PrivateRoute";
@@ -28,6 +33,10 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="tentang" element={<About />} />
+        <Route path="tentang/sejarah" element={<Sejarah />} />
+        <Route path="tentang/visi-misi" element={<VisiMisi />} />
+        <Route path="tentang/struktur" element={<Struktur />} />
+        <Route path="tentang/fasilitas" element={<Fasilitas />} />
         <Route path="kontak" element={<Contact />} />
         <Route path="berita" element={<Berita />} />
         <Route path="prestasi" element={<Prestasi />} />
@@ -35,6 +44,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="prestasi" element={<Prestasi />} />
         <Route path="detail-prestasi/:id" element={<DetailPrestasi />} />
+        <Route path="detail-berita/:id" element={<DetailBerita />} />
       </Route>
 
     
