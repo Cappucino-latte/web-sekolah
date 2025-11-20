@@ -1,0 +1,112 @@
+import {BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
+import Berita from "./pages/Berita.jsx";
+import Prestasi from "./pages/Prestasi.jsx";
+import Sejarah from "./pages/Sejarah.jsx";
+import VisiMisi from "./pages/VisiMisi.jsx";
+import Struktur from "./pages/Struktur.jsx";
+import Fasilitas from "./pages/Fasilitas.jsx";
+
+import MainNavbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard.jsx";
+import AdminUsers from "./pages/AdminUser.jsx";
+import AdminBerita from "./pages/AdminBerita.jsx";
+import AdminPrestasi from "./pages/AdminPrestasi.jsx";
+import DetailPrestasi from "./pages/DetailPrestasi";
+import DetailBerita from "./pages/DetailBerita";
+
+import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
+import PrivateRoute from "./components/PrivateRoute";
+import AdminLayout from "./layouts/AdminLayout.jsx";
+
+function App() {
+  return (
+    <Routes>
+
+      {/* ROUTE PUBLIC PAKAI LAYOUT (ADA NAVBAR & FOOTER) */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="tentang" element={<About />} />
+        <Route path="tentang/sejarah" element={<Sejarah />} />
+        <Route path="tentang/visi-misi" element={<VisiMisi />} />
+        <Route path="tentang/struktur" element={<Struktur />} />
+        <Route path="tentang/fasilitas" element={<Fasilitas />} />
+        <Route path="kontak" element={<Contact />} />
+        <Route path="berita" element={<Berita />} />
+        <Route path="prestasi" element={<Prestasi />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="prestasi" element={<Prestasi />} />
+        <Route path="detail-prestasi/:id" element={<DetailPrestasi />} />
+        <Route path="detail-berita/:id" element={<DetailBerita />} />
+      </Route>
+
+    
+      {/* ROUTE DASHBOARD MENGGUNAKAN LAYOUT ✅ */}
+      <Route
+  path="/admin/dashboard"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <Dashboard />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/admin/users"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminUsers />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/admin/berita"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminBerita />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/admin/prestasi"
+  element={
+    <PrivateRoute>
+      <AdminLayout>
+        <AdminPrestasi />
+      </AdminLayout>
+    </PrivateRoute>
+  }
+/>
+    </Routes>
+  );
+}
+
+function Layout() {
+  return (
+    <div>
+      <MainNavbar />
+      <main style={{ minHeight: "75vh" }}>
+        <Outlet />
+      </main>
+      <Footer />
+      <FloatingWhatsApp />
+    </div>
+  );
+}
+
+export default App;
