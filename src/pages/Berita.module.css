@@ -1,0 +1,174 @@
+/* --- VARIABLES --- */
+:root {
+    --primary-green: #15803d; /* Emerald Green */
+    --primary-gold: #d4a373;  /* Soft Gold */
+    --text-dark: #1e293b;     /* Slate Dark */
+    --text-grey: #64748b;     /* Slate Grey */
+    --bg-light: #f8fafc;      /* Very light grey background */
+    --font-serif: 'Playfair Display', serif; /* Font Mewah */
+    --font-sans: 'Inter', sans-serif;        /* Font Modern */
+}
+
+.pageWrapper {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+}
+
+/* --- HERO SECTION (Editorial Look) --- */
+.heroSection {
+    padding: 6rem 0 4rem;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.heroLabel {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.heroTitle {
+    font-family: var(--font-serif);
+    font-size: 4rem; /* Ukuran besar untuk impact */
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+.heroLine {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-gold);
+    margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+    font-size: 1.15rem;
+    color: var(--text-grey);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- NEWS GRID SECTION --- */
+.newsSection {
+    padding: 5rem 0;
+}
+
+/* --- CARD DESIGN --- */
+.newsCard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+/* 1. Image Styling */
+.imageContainer {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px; /* Sedikit rounded, tidak terlalu bulat */
+    margin-bottom: 1.5rem;
+}
+
+.newsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+}
+
+/* Efek Zoom saat card di-hover */
+.newsCard:hover .newsImage {
+    transform: scale(1.1); 
+}
+
+/* 2. Meta Data (Category & Date) */
+.metaWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.category {
+    color: var(--primary-green);
+    text-transform: uppercase;
+}
+
+.divider {
+    color: #cbd5e1;
+}
+
+.date {
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+}
+
+/* 3. Title Styling */
+.newsTitle {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.newsCard:hover .newsTitle {
+    color: var(--primary-green); /* Judul berubah hijau saat hover */
+}
+
+/* 4. Link/Button Styling */
+.linkGroup {
+    margin-top: auto; /* Mendorong ke bawah */
+}
+
+.readMore {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+}
+
+.arrowIcon {
+    transition: transform 0.3s ease;
+}
+
+.newsCard:hover .readMore {
+    color: var(--primary-gold);
+}
+
+.newsCard:hover .arrowIcon {
+    transform: translateX(5px); /* Panah bergerak ke kanan */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    .imageContainer {
+        height: 220px;
+    }
+}

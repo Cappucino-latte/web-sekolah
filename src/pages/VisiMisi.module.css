@@ -1,0 +1,232 @@
+/* --- VARIABLES (KONSISTEN) --- */
+:root {
+    --primary-green: #15803d; /* Emerald Green */
+    --primary-gold: #d4a373;  /* Soft Gold */
+    --text-dark: #1e293b;     /* Slate Dark */
+    --text-grey: #64748b;     /* Slate Grey */
+    --bg-light: #f8fafc;      /* Very light grey background */
+    --font-serif: 'Playfair Display', serif; 
+    --font-sans: 'Inter', sans-serif;        
+}
+
+.pageWrapper {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+/* --- HERO SECTION --- */
+.heroSection {
+    padding: 6rem 0 5rem;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.heroLabel {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.heroTitle {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+.heroLine {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-gold);
+    margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+    font-size: 1.15rem;
+    color: var(--text-grey);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- VISION SECTION --- */
+.visionSection {
+    padding: 6rem 0;
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.visionImage {
+    width: 100%;
+    height: 500px; /* Tinggi gambar portrait */
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.imageDecor {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary-gold);
+    z-index: 1;
+}
+
+.sectionLabel {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.visionStatement {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.visionDesc {
+    color: var(--text-grey);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+/* Icons Points */
+.visionPoints {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.pointItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.pointIcon {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+}
+
+/* --- MISSION SECTION --- */
+.missionSection {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
+}
+
+.sectionHeading {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.missionCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    height: 100%;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.missionCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    border-color: transparent;
+}
+
+.numberBadge {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(212, 163, 115, 0.2); /* Transparent Gold */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.missionText {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.checkIcon {
+    color: var(--primary-green);
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.missionCard:hover .checkIcon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- QUOTE SECTION --- */
+.quoteSection {
+    padding: 6rem 0;
+    background-color: var(--primary-green);
+    color: white;
+    text-align: center;
+}
+
+.quoteBox p {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.quoteBox span {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    .visionStatement {
+        font-size: 1.8rem;
+    }
+    .visionImage {
+        height: 300px;
+    }
+}

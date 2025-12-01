@@ -1,29 +1,131 @@
-/* src/components/Footer.module.css */
+/* Footer.module.css */
 
+/* Mengatur Background menjadi Cream, dan Text menjadi Hijau Gelap */
 .footerSection {
-    /* Perkiraan warna kuning/emas dari screenshot */
-    background-color: #0f1736;
-    color: #ffffff; /* Teks hitam/gelap agar terbaca */
-    padding: 50px 0;
-    margin-top: 50px; /* Jarak dari konten di atasnya */
-  }
-  
-  .footerLogo {
-    max-width: 180px; /* Ukuran logo sekolah */
-    margin-bottom: 20px;
-  }
-  
-  .contactInfo {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
-  .contactInfo p {
-    margin-bottom: 5px; /* Jarak antar baris alamat */
-  }
-  
-  .accreditationLogo {
-    max-height: 70px; /* Menyamakan tinggi logo-logo partner */
-    margin-right: 20px;
-    margin-bottom: 10px;
-  }
+  background-color: #FFFDE7; /* Warna Coklat Cream/Krem sesuai Brand */
+  color: #00451f; /* Teks diubah jadi Hijau Gelap agar terbaca di background terang */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+  border-top: 5px solid #D4AF37; /* Border atas tetap Emas */
+}
+
+/* --- Typography --- */
+.brandName {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #00642e; /* Nama Brand jadi Hijau Utama */
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.footerHeading {
+  font-family: 'Playfair Display', serif;
+  color: #00642e; /* Judul Kolom jadi Hijau Utama */
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Garis dekoratif Emas di bawah judul */
+.footerHeading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 3px;
+  background-color: #D4AF37; /* Garis tetap Emas */
+  border-radius: 2px;
+}
+
+.textSmall {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #4b5563; /* Abu-abu tua untuk deskripsi */
+}
+
+/* --- Links --- */
+.footerLink {
+  color: #00451f; /* Link jadi Hijau Gelap */
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  display: block;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.footerLink:hover {
+  color: #D4AF37; /* Hover jadi Emas */
+  transform: translateX(5px); /* Efek geser halus */
+}
+
+/* --- Social Icons --- */
+.socialLink {
+  width: 42px;
+  height: 42px;
+  background-color: #e8f5e9; /* Background icon jadi hijau sangat muda */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #00642e; /* Icon jadi Hijau */
+  margin-right: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 100, 46, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.socialLink:hover {
+  background-color: #00642e; /* Hover background jadi Hijau Tua */
+  color: #ffffff; /* Icon jadi Putih */
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 100, 46, 0.2);
+}
+
+/* --- Contact Items --- */
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.contactIcon {
+  color: #D4AF37; /* Icon kontak tetap Emas */
+  margin-right: 12px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* --- Accreditation Logos --- */
+.accreditationLogo {
+  height: 40px;
+  width: auto;
+  margin-right: 15px;
+  margin-top: 10px;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+
+.accreditationLogo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* --- Copyright Bar --- */
+/* Bagian paling bawah dibuat gelap untuk kontras penutup */
+.copyright {
+  background-color: #003318; /* Hijau Gelap */
+  padding: 1.5rem 0;
+  margin-top: 4rem;
+  font-size: 0.85rem;
+  color: #cbd5e1; /* Teks putih redup */
+}

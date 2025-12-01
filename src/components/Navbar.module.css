@@ -1,0 +1,359 @@
+/* src/components/Navbar.css */
+
+/* ========== NAVBAR BASE ========== */
+.main-navbar {
+  background: linear-gradient(135deg, #0f1736 0%, #1a2332 100%);
+  padding: 1rem 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.main-navbar.scrolled {
+  background: rgba(15, 23, 54, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== LOGO & BRAND ========== */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.brand-logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-placeholder {
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover .logo-placeholder {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* ========== NAVIGATION LINKS ========== */
+.nav-links {
+  gap: 0.5rem;
+}
+
+.nav-link-item {
+  position: relative;
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.nav-link-item span {
+  position: relative;
+  z-index: 2;
+}
+
+.nav-link-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0e1c5a 0%, #162680 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-link-item:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link-item:hover::before {
+  width: 70%;
+}
+
+.nav-link-item.active {
+  color: white !important;
+  background: rgba(102, 126, 234, 0.15);
+}
+
+.nav-link-item.active::before {
+  width: 70%;
+}
+
+/* ========== DROPDOWN STYLES ========== */
+.nav-link-item.dropdown {
+  padding: 0 !important;
+}
+
+.nav-link-item.dropdown .dropdown-toggle {
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link-item.dropdown .dropdown-toggle::after {
+  transition: transform 0.3s ease;
+}
+
+.nav-link-item.dropdown.show .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+.nav-link-item.dropdown .dropdown-toggle:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link-item.dropdown .dropdown-menu {
+  background: rgba(15, 23, 54, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  min-width: 220px;
+}
+
+.nav-link-item.dropdown .dropdown-item {
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.nav-link-item.dropdown .dropdown-item:hover {
+  background: rgba(102, 126, 234, 0.15);
+  color: white;
+  transform: translateX(5px);
+}
+
+.nav-link-item.dropdown .dropdown-item:active {
+  background: rgba(102, 126, 234, 0.25);
+  color: white;
+}
+
+.nav-link-item.dropdown .dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+}
+
+.dropdown-highlight {
+  background: rgba(102, 126, 234, 0.1) !important;
+  font-weight: 600 !important;
+}
+
+.dropdown-highlight span {
+  margin-right: 0.5rem;
+}
+
+.dropdown-highlight:hover {
+  background: rgba(102, 126, 234, 0.2) !important;
+}
+
+/* ========== PPDB BUTTON ========== */
+.nav-actions {
+  margin-left: 1rem;
+}
+
+.ppdb-button {
+  background: linear-gradient(135deg, #cf9f19 0%, #a47c05 100%);
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.ppdb-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 205, 79, 0.4);
+  background: linear-gradient(135deg, #e5b651 0%, #ead796 100%);
+}
+
+.ppdb-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.ppdb-button svg {
+  transition: transform 0.3s ease;
+}
+
+.ppdb-button:hover svg {
+  transform: rotate(10deg);
+}
+
+/* ========== NAVBAR TOGGLER ========== */
+.navbar-toggler {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 991px) {
+  .main-navbar {
+    padding: 0.75rem 0;
+  }
+
+  .main-navbar.scrolled {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-collapse {
+    background: rgba(15, 23, 54, 0.98);
+    backdrop-filter: blur(20px);
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-link-item {
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link-item::before {
+    display: none;
+  }
+
+  .nav-link-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  .nav-link-item.dropdown .dropdown-toggle {
+    padding: 1rem !important;
+  }
+
+  .nav-link-item.dropdown .dropdown-menu {
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    box-shadow: none;
+    margin-left: 1rem;
+  }
+
+  .nav-actions {
+    margin-left: 0;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ppdb-button {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+  }
+
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .brand-text {
+    display: none;
+  }
+
+  .logo-wrapper {
+    gap: 0;
+  }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-collapse.show {
+  animation: fadeInDown 0.3s ease-out;
+}
+
+/* ========== DARK MODE SUPPORT ========== */
+@media (prefers-color-scheme: dark) {
+  .main-navbar {
+    background: linear-gradient(135deg, #0a0f1f 0%, #12182c 100%);
+  }
+
+  .main-navbar.scrolled {
+    background: rgba(10, 15, 31, 0.95);
+  }
+}

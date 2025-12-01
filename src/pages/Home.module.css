@@ -1,512 +1,612 @@
-/* src/pages/Home.module.css */
+/* --- GLOBAL VARIABLES & UTILS --- */
+:root {
+  --primary: #15803d; /* Hijau Emerald Modern */
+  --secondary: #0f172a; /* Dark Navy */
+  --accent: #d4a373; /* Gold/Sand */
+  --light-bg: #f8fafc;
+  --text-main: #334155;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
 
-.homeWrapper {
+.pageWrapper {
+  width: 100%;
   overflow-x: hidden;
-
-  /* --- Variabel untuk Konsistensi Profesional --- */
-  --color-text-dark: #1a1a2e;
-  --color-text-body: #555;
-  --color-text-muted: #666;
-  --color-primary: #0d6efd;
-  --color-primary-dark: #0a58ca;
-  --color-success: #198754;
-  --color-dark-bg: #16213e;
-  --color-light-bg: #f8f9fa;
-  --color-soft-bg: #f0f8ff;
-  --color-white: #ffffff;
-  --color-border: rgba(0, 0, 0, 0.08);
-
-  --radius-card: 16px; /* Standarisasi border-radius (dari 16px & 20px) */
-  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.1);
-  --transition-speed: 0.3s;
-  --transition-curve: cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-sans);
+  color: var(--text-main);
 }
 
-/* ========== SECTION STYLES ========== */
-.sectionPadding {
-  padding: 96px 0; /* 96px lebih umum digunakan dalam sistem spasi */
-}
-
-.sectionLight {
-  background: linear-gradient(
-    135deg,
-    var(--color-light-bg) 0%,
-    var(--color-white) 100%
-  );
-}
-
-.sectionDark {
-  background: linear-gradient(
-    135deg,
-    var(--color-text-dark) 0%,
-    var(--color-dark-bg) 100%
-  );
-  color: var(--color-white);
-}
-
-.sectionSoft {
-  background: linear-gradient(
-    135deg,
-    var(--color-soft-bg) 0%,
-    #e6f2ff 100%
-  );
-}
-
-.sectionHeader {
+/* --- HERO SECTION --- */
+.heroItem {
+  height: 100vh;
+  min-height: 600px;
   position: relative;
-  margin-bottom: 3rem;
+  background-color: #000;
 }
 
-.sectionTitle {
-  font-size: 2.5rem;
+.heroImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.kenBurns {
+  animation: kenBurnsAnim 20s infinite alternate;
+}
+
+@keyframes kenBurnsAnim {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 800px;
+}
+
+.heroLine {
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
   font-weight: 700;
-  color: var(--color-text-dark);
-  margin-bottom: 1rem;
-  line-height: 1.3; /* Sedikit lebih longgar untuk keterbacaan */
-}
-
-.sectionSubtitle {
-  font-size: 1.125rem;
-  color: var(--color-text-muted);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.7; /* Standarisasi line-height */
-}
-
-.sectionHeading {
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 1.4; /* Sedikit lebih longgar */
+  line-height: 1.1;
   margin-bottom: 1.5rem;
 }
 
-.sectionDark .sectionHeading,
-.sectionDark .sectionDesc {
-  color: var(--color-white);
+.heroSubtitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: 600px;
 }
 
-.sectionDesc {
-  font-size: 1.1rem;
-  color: var(--color-text-body);
-  line-height: 1.7; /* Standarisasi line-height */
-}
-
-.highlightText {
-  color: #0dcaf0;
+.btnHeroPrimary {
+  padding: 12px 32px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btnHeroPrimary:hover {
+  background-color: #166534;
+  transform: translateY(-2px);
+}
+
+.btnHeroSecondary {
+  padding: 12px 32px;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btnHeroSecondary:hover {
+  background-color: white;
+  color: black;
+}
+
+/* --- STORY/ABOUT SECTION --- */
+.storySection {
+  padding: 6rem 0;
+  background-color: white;
+}
+
+.storyImageContainer {
+  position: relative;
+}
+
+.storyImage {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.storyPattern {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--accent);
+  z-index: -1;
+}
+
+.badgeLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.storyText {
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.statsRow {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 2rem;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: #64748b;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
 }
 
-/* ========== NEWS SECTION ========== */
-.newsCard {
-  transition: all var(--transition-speed) var(--transition-curve);
-  border-radius: var(--radius-card);
-  background: var(--color-white);
-  height: 100%;
-  border: 1px solid var(--color-border); /* Border subtil */
-  box-shadow: var(--shadow-base); /* Shadow dasar */
-  cursor: pointer;
-}
-
-.newsCard:hover,
-.newsCard:focus-visible { /* Menambahkan state :focus-visible */
-  transform: translateY(-8px); /* Lebih subtil dari -12px */
-  box-shadow: var(--shadow-hover); /* Shadow hover (tanpa !important) */
-}
-
-.newsCard:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-.newsTitle {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text-dark);
-  line-height: 1.4;
-}
-
-.newsDate {
-  font-size: 0.875rem;
-  color: #999;
-  margin-bottom: 1rem;
-}
-
-.newsExcerpt {
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-.newsButton {
+.linkUnderline {
   font-weight: 600;
-  color: var(--color-primary);
-  transition: all var(--transition-speed) ease;
-  display: inline-flex;
-  align-items: center;
+  color: var(--secondary);
+  border-bottom: 2px solid var(--accent);
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.newsButton:hover {
-  color: var(--color-primary-dark);
-  transform: translateX(4px);
+.linkUnderline:hover {
+  color: var(--primary);
 }
 
-/* ========== PROGRAM SECTION ========== */
-.programCard {
-  border-radius: var(--radius-card); /* Standarisasi */
-  overflow: hidden;
-  transition: all var(--transition-speed) var(--transition-curve);
-  box-shadow: var(--shadow-base); /* Menambahkan shadow dasar */
+/* --- PRINCIPAL SECTION --- */
+.principalSection {
+  padding-bottom: 6rem;
 }
 
-.programCard:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover); /* Shadow konsisten */
+.principalCard {
+  background-color: var(--light-bg);
+  padding: 3rem;
+  border-radius: 8px;
 }
 
-.programImageWrapper {
+.principalImg {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.quoteIcon {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.quoteText {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin-bottom: 2rem;
+}
+
+.principalName h5 {
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary);
+}
+
+.principalName span {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* --- FEATURES --- */
+.featureSection {
+  padding: 6rem 0;
+  background-color: #fff;
+}
+
+.separatorCenter {
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
+  margin: 1rem auto;
+}
+
+.featureCard {
+  background: white;
+  transition: transform 0.3s;
+  height: 100%;
+}
+
+.featureCard:hover {
+  transform: translateY(-10px);
+}
+
+.featureImgWrapper {
+  height: 200px;
   position: relative;
   overflow: hidden;
-  height: 280px;
 }
 
-.programImage {
+.featureImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s var(--transition-curve); /* Transisi lebih halus */
+  transition: transform 0.5s;
 }
 
-.programCard:hover .programImage {
-  transform: scale(1.1); /* Sedikit lebih subtil */
+.featureCard:hover .featureImg {
+  transform: scale(1.1);
 }
 
-.programOverlay {
+.featureOverlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    transparent 100%
-  );
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(21, 128, 61, 0.8);
   display: flex;
-  align-items: flex-end;
-  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: 0.3s;
 }
 
-.programCard:hover .programOverlay {
+.featureCard:hover .featureOverlay {
   opacity: 1;
 }
 
-.programContent {
-  transform: translateY(20px);
-  transition: transform 0.4s var(--transition-curve);
+.featureIcon {
+  color: white;
 }
 
-.programCard:hover .programContent {
-  transform: translateY(0);
+.featureBody {
+  padding: 1.5rem 0;
 }
 
-.programTitle {
-  color: var(--color-white);
-  font-size: 1.5rem;
+.featureTitle {
+  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: var(--secondary);
 }
 
-.programDesc {
-  color: rgba(255, 255, 255, 0.9);
+.featureDesc {
   font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  color: #64748b;
+  line-height: 1.6;
 }
 
-.programLink {
-  color: var(--color-white);
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: gap var(--transition-speed) ease;
+/* --- ACADEMIC --- */
+.academicSection {
+  background-color: var(--secondary);
+  color: rgb(0, 0, 0);
 }
 
-.programLink:hover {
-  gap: 0.75rem;
-  color: var(--color-white);
+.academicIntro {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.joinButton {
-  font-weight: 600;
-  transition: all var(--transition-speed) ease;
+.academicHeading {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.joinButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.academicDesc {
+  color: #000000;
+  margin-bottom: 2rem;
 }
 
-/* ========== BEASISWA SECTION ========== */
-.beasiswaList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.separatorLeft {
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent);
 }
 
-.beasiswaList li {
-  padding: 0.75rem 0;
-  font-size: 1.05rem;
-  color: var(--color-text-body);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.beasiswaList li:last-child {
-  border-bottom: none;
-}
-
-.beasiswaButton {
-  font-weight: 600;
-  transition: all var(--transition-speed) ease;
-}
-
-.beasiswaButton:hover,
-.beasiswaButton:focus-visible {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.3);
-}
-
-.beasiswaCard {
+.tileCard {
   position: relative;
+  height: 400px;
   overflow: hidden;
-  border-radius: var(--radius-card); /* Standarisasi */
-  height: 300px;
   cursor: pointer;
 }
 
-.beasiswaImage {
+.tileImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--transition-curve); /* Sedikit lebih lambat */
+  transition: 0.5s;
+  filter: brightness(0.6);
 }
 
-.beasiswaCard:hover .beasiswaImage {
-  transform: scale(1.1); /* Lebih subtil dari 1.15 */
-}
-
-.beasiswaOverlay {
+.tileContent {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.3) 70%,
-    transparent 100%
-  );
-  display: flex;
-  align-items: flex-end;
+  left: 0;
   padding: 2rem;
-  transition: background 0.4s ease;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
 }
 
-.beasiswaCard:hover .beasiswaOverlay {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.5) 70%,
-    transparent 100%
-  );
-}
-
-.beasiswaContent {
-  transform: translateY(0);
-  transition: transform 0.4s ease;
-}
-
-.beasiswaTitle {
-  color: var(--color-white);
+.tileTitle {
+  color: white;
   font-size: 1.5rem;
+  font-family: var(--font-serif);
+  margin-bottom: 1rem;
+}
+
+.tileLine {
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  margin-bottom: 1rem;
+  transition: 0.3s;
+}
+
+.tileText {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s;
+  height: 0;
+}
+
+.tileCard:hover .tileImage {
+  transform: scale(1.1);
+  filter: brightness(0.4);
+}
+
+.tileCard:hover .tileLine {
+  width: 40px;
+}
+
+.tileCard:hover .tileText {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+}
+
+.academicMore {
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.academicMore:hover {
+  background-color: #166534;
+}
+
+.verticalText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: white;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  padding: 2rem;
 }
 
-.beasiswaText {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  margin: 0;
+/* --- SCHOLARSHIP --- */
+.scholarshipSection {
+  padding: 6rem 0;
+  background-color: var(--light-bg);
 }
 
-/* ========== POTENTIAL SECTION ========== */
-.potentialImageWrapper {
+.btnSolid {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.scholarshipCard {
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 250px;
 }
 
-.potentialImage {
-  position: relative;
-  z-index: 2;
-  border-radius: var(--radius-card); /* Standarisasi */
-}
-
-.imageAccent {
-  position: absolute;
+.scholarshipImage {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-dark) 0%,
-    var(--color-dark-bg) 100%
-  );
-  border-radius: var(--radius-card); /* Standarisasi */
-  top: 20px;
+  object-fit: cover;
+}
+
+.scholarshipOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.scholarshipContent {
+  position: absolute;
+  bottom: 20px;
   left: 20px;
-  z-index: 1;
+  right: 20px;
+  z-index: 2;
 }
 
-.infoCard {
-  background: var(--color-white);
-  transition: all var(--transition-speed) var(--transition-curve);
+/* --- NEWS --- */
+.newsSection {
+  padding: 6rem 0;
+}
+
+.newsCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.newsCard:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: transparent;
+}
+
+.newsImgContainer {
+  position: relative;
+  height: 220px;
+}
+
+.newsImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newsDateBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.newsBody {
+  padding: 1.5rem;
+}
+
+.newsCategory {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.newsTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.newsLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: var(--radius-card); /* Standarisasi */
-  box-shadow: var(--shadow-base); /* Shadow dasar */
 }
 
-.infoCard:hover,
-.infoCard:focus-visible { /* Menambahkan :focus-visible */
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover); /* Shadow hover (tanpa !important) */
-  border-color: var(--color-primary);
+/* --- PRE-FOOTER CTA --- */
+.preFooter {
+  padding: 5rem 0;
+  background-color: var(--secondary);
+  color: white;
+  text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Optional pattern */
 }
 
-.infoCard:focus-visible {
-  outline: none; /* Border sudah cukup sebagai indikator focus */
-}
-
-.infoIcon {
+.ctaTitle {
+  font-family: var(--font-serif);
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.infoCardTitle {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-text-dark);
+.ctaText {
+  opacity: 0.8;
+  margin-bottom: 2rem;
 }
 
-.infoCardDesc {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
+.btnCtaPrimary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: 0.3s;
 }
 
-/* ========== CTA SECTION ========== */
-.ctaSection {
-  background: linear-gradient(
-    135deg,
-    var(--color-dark-bg) 0%,
-    #14264d 100%
-  );
-  padding: 100px 0;
-  position: relative;
-  overflow: hidden;
+.btnCtaSecondary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: 0.3s;
 }
 
-.ctaSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-      circle at 20% 50%,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 50%
-    );
-  pointer-events: none;
+.btnCtaPrimary:hover {
+  background-color: #166534;
+  transform: translateY(-2px);
 }
 
-.ctaTitle {
-  font-size: 2.75rem;
-  font-weight: 700;
-  position: relative;
-  z-index: 1;
-  color: var(--color-white);
+.btnCtaSecondary:hover {
+  background-color: white;
+  color: var(--secondary);
 }
 
-.ctaSubtitle {
-  font-size: 1.25rem;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  opacity: 0.9; /* Sedikit lebih subtil dari 0.95 */
-  position: relative;
-  z-index: 1;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 991px) {
-  .sectionPadding {
-    padding: 64px 0; /* 64px lebih umum digunakan */
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
   }
-
-  .sectionTitle {
-    font-size: 2rem;
+  .statsRow {
+    flex-wrap: wrap;
   }
-
-  .sectionHeading {
-    font-size: 1.75rem;
-  }
-
-  .ctaTitle {
-    font-size: 2rem;
-  }
-
-  .ctaSubtitle {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
-
-  .sectionHeading {
-    font-size: 1.5rem;
-  }
-
-  .programImageWrapper {
-    height: 220px;
-  }
-
-  .beasiswaCard {
-    height: 250px;
-  }
-
-  .ctaTitle {
-    font-size: 1.75rem;
-  }
-
-  .imageAccent {
-    top: 10px;
-    left: 10px;
+  .academicIntro {
+    padding: 2rem;
   }
 }
