@@ -1,102 +1,169 @@
-// src/pages/Contact.jsx
+import React from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Fade, Slide } from "react-awesome-reveal";
+import styles from "./Contact.module.css";
 
-import React from 'react';
-// 1. Import semua komponen Bootstrap yang kita butuhkan
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
-// 2. Import CSS Module yang baru kita buat
-import styles from './Contact.module.css';
+import {
+  GeoAltFill,
+  TelephoneFill,
+  EnvelopeFill,
+  Whatsapp,
+  SendFill,
+  ClockFill
+} from "react-bootstrap-icons";
 
 function Contact() {
   return (
-    <div>
-      {/* 1. BAGIAN JUDUL HALAMAN */}
-      <div className={styles.pageHeader}>
-        <Container>
-          <h1 className={styles.pageTitle}>Hubungi Kami</h1>
+    <div className={styles.pageWrapper}>
+      
+      {/* 1. HERO SECTION */}
+      <section className={styles.heroSection}>
+        <Container className="text-center">
+          <Fade direction="up" triggerOnce>
+            <span className={styles.heroBadge}>HUBUNGI KAMI</span>
+            <h1 className={styles.heroTitle}>Kontak</h1>
+            <div className={styles.heroLine}></div>
+            <p className={styles.heroSubtitle}>
+              Kami siap melayani informasi seputar pendaftaran santri, 
+              kunjungan, dan kerjasama pendidikan.
+            </p>
+          </Fade>
         </Container>
-      </div>
+      </section>
 
-      {/* 2. BAGIAN UTAMA (Form & Info) */}
-      <Container className="my-5">
-        <Row>
-          
-          {/* KOLOM KIRI: INFO KONTAK */}
-          <Col md={6} className="mb-4">
-            <h3 className="mb-3 fw-bold">Informasi Kontak</h3>
-            <p>
-              Kami senang mendengar dari Anda. Silakan hubungi kami 
-              melalui detail di bawah ini atau isi formulir di samping.
-            </p>
-            <hr />
-            {/* Kita ambil info dari Footer yang sudah kita buat */}
-            <p style={{ lineHeight: 1.8 }}>
-              <strong>Alamat:</strong><br />
-              Jalan Cangkringan No. 8, Pondok Dawung, KABUPATEN SLEMAN, 
-              Kota Yogyakarta
-            </p>
-            <p>
-              <strong>Telepon:</strong><br />
-              +62 274 3900192
-            </p>
-            <p>
-              <strong>Email:</strong><br />
-              info@mtss-rs.sch.id
-            </p>
-          </Col>
+      {/* 2. MAIN CONTENT (INFO & FORM) */}
+      <section className={styles.contentSection}>
+        <Container>
+          <Row className="g-5">
+            
+            {/* KOLOM KIRI: INFO KONTAK */}
+            <Col lg={5}>
+              <Slide direction="left" triggerOnce>
+                <div className={styles.infoCard}>
+                  <h3 className={styles.cardHeading}>Informasi Kontak</h3>
+                  <p className="text-muted mb-4">
+                    Silakan hubungi kami melalui saluran berikut. Tim kami akan merespons pesan Anda secepatnya.
+                  </p>
 
-          {/* KOLOM KANAN: FORMULIR KONTAK */}
-          <Col md={6}>
-            <h3 className="mb-3 fw-bold">Kirim Pesan</h3>
-            <Form>
-              <Form.Group className="mb-3" controlId="formNama">
-                <Form.Label>Nama Lengkap</Form.Label>
-                <Form.Control type="text" placeholder="Masukkan nama Anda" />
-              </Form.Group>
+                  <div className={styles.contactItem}>
+                    <div className={styles.iconWrapper}>
+                        <GeoAltFill />
+                    </div>
+                    <div>
+                        <h5 className="fw-bold mb-1">Alamat Pesantren</h5>
+                        <p className="text-muted mb-0 small">
+                          Jl. Cangkringan No. 8, Pondok Dawung, Bimomartani, 
+                          Ngemplak, Sleman, DIY.
+                        </p>
+                    </div>
+                  </div>
 
-              <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>Alamat Email</Form.Label>
-                <Form.Control type="email" placeholder="Masukkan email Anda" />
-              </Form.Group>
+                  <div className={styles.contactItem}>
+                    <div className={styles.iconWrapper}>
+                        <Whatsapp />
+                    </div>
+                    <div>
+                        <h5 className="fw-bold mb-1">WhatsApp / Telepon</h5>
+                        <p className="text-muted mb-0 small">
+                          +62 852-2997-6036
+                        </p>
+                    </div>
+                  </div>
 
-              <Form.Group className="mb-3" controlId="formPesan">
-                <Form.Label>Pesan</Form.Label>
-                <Form.Control as="textarea" rows={5} placeholder="Tulis pesan Anda di sini..." />
-              </Form.Group>
+                  <div className={styles.contactItem}>
+                    <div className={styles.iconWrapper}>
+                        <EnvelopeFill />
+                    </div>
+                    <div>
+                        <h5 className="fw-bold mb-1">Email</h5>
+                        <p className="text-muted mb-0 small">
+                          mtsroudlotussholihinjogja@gmail.com
+                        </p>
+                    </div>
+                  </div>
 
-              {/* Tombol ini belum akan berfungsi mengirim email 
-                  karena kita butuh back-end, tapi tampilannya sudah jadi.
-              */}
-              <Button variant="primary" type="submit">
-                Kirim Pesan
-              </Button>
-            </Form>
-          </Col>
-        </Row>
+                  <div className={styles.contactItem}>
+                    <div className={styles.iconWrapper}>
+                        <ClockFill />
+                    </div>
+                    <div>
+                        <h5 className="fw-bold mb-1">Jam Operasional Kantor</h5>
+                        <p className="text-muted mb-0 small">
+                          Senin - Sabtu: 07.00 - 15.00 WIB
+                        </p>
+                    </div>
+                  </div>
 
-        {/* 3. BAGIAN PETA LOKASI */}
-        <Row className="mt-5">
-          <Col>
-            <h3 className="text-center mb-4 fw-bold">Lokasi Kami</h3>
-            <div className={styles.mapWrapper}>
-              {/* PENTING: 
-                Nanti Anda harus ganti 'src' ini dengan kode embed 
-                dari Google Maps untuk alamat sekolah Anda. 
-              */}
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.932906877022!2d110.3754294153913!3d-7.80731447970924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57a15147c2b5%3A0x6a0f4435555e7188!2sJl.%20Taman%20Siswa%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1731166123456!5m2!1sid!2sid"
+                </div>
+              </Slide>
+            </Col>
+
+            {/* KOLOM KANAN: FORMULIR */}
+            <Col lg={7}>
+              <Slide direction="right" triggerOnce>
+                <div className={styles.formCard}>
+                  <h3 className={styles.sectionHeading}>Kirim Pesan</h3>
+                  <p className="text-muted mb-4">
+                    Punya pertanyaan khusus? Isi formulir di bawah ini.
+                  </p>
+                  
+                  <Form>
+                    <Row>
+                        <Col md={6}>
+                            <Form.Group className="mb-4" controlId="formNama">
+                                <Form.Label className={styles.formLabel}>Nama Lengkap</Form.Label>
+                                <Form.Control type="text" placeholder="Nama Anda" className={styles.formInput} />
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group className="mb-4" controlId="formEmail">
+                                <Form.Label className={styles.formLabel}>Email / WhatsApp</Form.Label>
+                                <Form.Control type="text" placeholder="Kontak yang bisa dihubungi" className={styles.formInput} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+
+                    <Form.Group className="mb-4" controlId="formSubjek">
+                        <Form.Label className={styles.formLabel}>Subjek Pesan</Form.Label>
+                        <Form.Select className={styles.formInput}>
+                            <option>Informasi PPDB</option>
+                            <option>Kunjungan Pesantren</option>
+                            <option>Lainnya</option>
+                        </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group className="mb-4" controlId="formPesan">
+                        <Form.Label className={styles.formLabel}>Isi Pesan</Form.Label>
+                        <Form.Control as="textarea" rows={5} placeholder="Tulis pertanyaan Anda..." className={styles.formInput} />
+                    </Form.Group>
+
+                    <Button className={styles.submitBtn} type="submit">
+                      Kirim Pesan Sekarang <SendFill className="ms-2"/>
+                    </Button>
+                  </Form>
+                </div>
+              </Slide>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* 3. PETA LOKASI */}
+      <section className={styles.mapSection}>
+        <Container fluid className="p-0">
+            <iframe 
+                src="https://maps.google.com/maps?q=Pondok%20Pesantren%20Roudlotush%20Sholihin%20Sleman&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 width="100%" 
-                height="450" 
+                height="500" 
+                style={{ border: 0, filter: "grayscale(20%)" }} 
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                style={{ border: 0 }}
-              ></iframe>
-            </div>
-          </Col>
-        </Row>
+                title="Peta Lokasi MTs Roudlotush Sholihin"
+            ></iframe>
+        </Container>
+      </section>
 
-      </Container>
     </div>
   );
 }

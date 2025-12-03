@@ -1,10 +1,9 @@
-/* --- VARIABLES (Disamakan dengan Berita) --- */
 :root {
-    --primary-green: #15803d; /* Emerald Green */
-    --primary-gold: #d4a373;  /* Soft Gold */
-    --text-dark: #1e293b;     /* Slate Dark */
-    --text-grey: #64748b;     /* Slate Grey */
-    --bg-light: #f8fafc;      /* Light Background */
+    --primary-green: #15803d; 
+    --primary-gold: #d4a373;  
+    --text-dark: #000000;     
+    --text-grey: #000000;     
+    --bg-light: #f8fafc;      
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
 }
@@ -15,10 +14,9 @@
     font-family: var(--font-sans);
 }
 
-/* --- HERO SECTION (Sama dengan Berita) --- */
 .heroSection {
     padding: 6rem 0 4rem;
-    background-color: var(--bg-light);
+    background-color: #ffee99;
     border-bottom: 1px solid #e2e8f0;
 }
 

@@ -10,6 +10,9 @@ import Prestasi from './pages/Prestasi.jsx';
 import VisiMisi from './pages/VisiMisi.jsx';
 
 import Profil from './pages/Profil.jsx'; 
+import Akademik from './pages/Akademik.jsx'; 
+import Kepesantrenan from './pages/Kepesantrenan.jsx'; 
+import PPDB from './pages/PPDB.jsx'; 
 
 import MainNavbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
@@ -26,6 +29,9 @@ function App() {
         <Route path="kontak" element={<Contact />} />
         <Route path="berita" element={<Berita />} />
         <Route path="prestasi" element={<Prestasi />} />
+        <Route path="Akademik" element={<Akademik />} />
+        <Route path="Kepesantrenan" element={<Kepesantrenan />} />
+        <Route path="PPDB" element={<PPDB />} />
       </Route>
     </Routes>
   );

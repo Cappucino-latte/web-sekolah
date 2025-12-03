@@ -14,7 +14,7 @@ function VisiMisi() {
           <Fade direction="up" triggerOnce>
             <div className="text-center">
               <span className={styles.heroLabel}>OUR COMPASS</span>
-              <h1 className={styles.heroTitle}>Vision & Mission</h1>
+              <h1 className={styles.heroTitle}>Visi - Missi</h1>
               <div className={styles.heroLine}></div>
               <p className={styles.heroSubtitle}>
                 Arah dan tujuan kami dalam membentuk generasi Roudlotush Sholihin yang berintegritas, cerdas, dan berakhlak mulia.

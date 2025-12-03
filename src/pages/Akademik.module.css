@@ -1,0 +1,308 @@
+/* --- VARIABLES --- */
+:root {
+    --primary-green: #15803d; /* Emerald Green */
+    --primary-gold: #d4a373;  /* Soft Gold/Bronze */
+    --bg-gold-light: #ffee99; /* Background Hero */
+    --text-dark: #1e293b;     /* Slate Dark */
+    --text-grey: #64748b;     /* Slate Grey */
+    --bg-light: #f8fafc;      /* Background Section */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+  }
+  
+  .pageWrapper {
+    background-color: #fff;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+  
+  /* --- 1. HERO SECTION (Editorial Style - Center) --- */
+  .heroSection {
+    padding: 6rem 0 4rem;
+    background-color: var(--bg-gold-light);
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+  }
+  
+  .heroLabel {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .heroTitle {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+  
+  .heroLine {
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-gold);
+    margin: 0 auto 1.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  
+  /* --- COMMON SECTION STYLES --- */
+  .sectionPadding {
+    padding: 5rem 0;
+  }
+  
+  .bgLight {
+    background-color: var(--bg-light);
+  }
+  
+  .badgeLabel {
+    color: var(--primary-gold);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .sectionHeading {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* --- 2. TABS CUSTOM STYLING --- */
+  .customTab {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--text-grey) !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+    padding: 15px 20px !important;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    text-align: left;
+  }
+  
+  .customTab:hover {
+    background-color: #fff !important;
+    color: var(--primary-green) !important;
+    transform: translateX(5px);
+  }
+  
+  /* Target class active dari Bootstrap */
+  :global(.nav-pills .nav-link.active) {
+    background-color: var(--primary-green) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2);
+  }
+  
+  .tabContentArea {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    min-height: 300px;
+  }
+  
+  .subjectList {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+  }
+  
+  .subjectList li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  
+  .subjectList li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-gold);
+    font-weight: bold;
+  }
+  
+  /* --- 3. PROGRAM CARDS --- */
+  .programCard {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+    height: 100%;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .programCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: var(--primary-gold);
+  }
+  
+  .iconWrapper {
+    width: 70px;
+    height: 70px;
+    background-color: var(--bg-light);
+    color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .programCard:hover .iconWrapper {
+    background-color: var(--primary-green);
+    color: #fff;
+  }
+  
+  .programTitle {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .programDesc {
+    color: var(--text-grey);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* --- 4. SCHEDULE TIMELINE --- */
+  .infoBox {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  }
+  
+  .timelineWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid #e2e8f0;
+    padding-left: 0;
+  }
+  
+  .timelineItem {
+    position: relative;
+    padding: 20px 0 20px 30px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.3s;
+  }
+  
+  .timelineItem:hover {
+    background-color: #fcfcfc;
+  }
+  
+  .timelineItem::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 28px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border: 2px solid var(--primary-green);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .timeBadge {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+  
+  .activityName {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  /* --- 5. CTA BUTTONS --- */
+  .ctaSection {
+    padding: 6rem 0;
+    background-color: var(--primary-green);
+    color: #fff;
+  }
+  
+  .ctaSection h3 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .btnOutline, .btnSolid {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .btnOutline {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+  
+  .btnOutline:hover {
+    background: #fff;
+    color: var(--primary-green);
+  }
+  
+  .btnSolid {
+    background: var(--primary-gold);
+    border: 2px solid var(--primary-gold);
+    color: var(--text-dark);
+  }
+  
+  .btnSolid:hover {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .heroTitle { font-size: 2.5rem; }
+    .sectionHeading { font-size: 2rem; }
+    .tabContentArea { margin-top: 2rem; }
+  }

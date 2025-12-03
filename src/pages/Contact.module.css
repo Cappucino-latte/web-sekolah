@@ -1,21 +1,175 @@
-/* src/pages/Contact.module.css */
+/* --- VARIABLES --- */
+:root {
+  --primary: #ffee99;       /* Kuning Muda */
+  --secondary: #0f172a;     /* Navy Gelap */
+  --accent: #ffee99;        /* Hijau Emerald */
+  --text-main: #000000;     /* Hitam */
+  --text-muted: #4b5563;    /* Abu Gelap */
+  --bg-white: #ffffff;
+}
 
-.pageHeader {
-    padding: 60px 20px;
-    background-color: #f8f9fa; /* Latar abu-abu muda */
-    text-align: center;
-    border-bottom: 1px solid #e9ecef;
-  }
-  
-  .pageTitle {
-    font-size: 3rem;
+.pageWrapper {
+  font-family: 'Inter', sans-serif;
+  color: #14532d;
+  background-color: var(--bg-white);
+}
+
+/* --- HERO SECTION --- */
+.heroSection {
+    padding: 6rem 0;
+    background-color: #ffee99;
+    color: var(--text-main);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.heroBadge {
+    display: inline-block;
+    background-color: #14532d;
+    color: #ffee99;
+    padding: 6px 16px;
     font-weight: 700;
-  }
-  
-  .mapWrapper {
-    /* Wrapper ini untuk membuat iframe peta terlihat rapi */
-    border-radius: 15px;
-    overflow: hidden; /* Penting agar border-radius berfungsi di iframe */
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.heroTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #000000;
+}
+
+.heroLine {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- CONTENT SECTION --- */
+.contentSection {
+    padding: 6rem 0;
+    background-color: #f8fafc;
+}
+
+/* Info Card (Left) */
+.infoCard {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.cardHeading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.contactItem:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.iconWrapper {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(21, 128, 61, 0.1); /* Hijau muda */
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Form Card (Right) */
+.formCard {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.sectionHeading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.formLabel {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.formInput {
+    padding: 12px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.formInput:focus {
+    border-color: var(--accent); /* Focus jadi hijau */
+    box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.1);
+}
+
+.submitBtn {
+    background-color: var(--accent);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 8px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.submitBtn:hover {
+    background-color: #14532d; /* Hijau lebih gelap */
+    transform: translateY(-2px);
+}
+
+/* --- MAP SECTION --- */
+.mapSection {
+    position: relative;
+    border-top: 5px solid var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    .infoCard, .formCard {
+        padding: 2rem;
+    }
+}

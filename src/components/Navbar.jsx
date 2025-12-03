@@ -1,116 +1,145 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { List } from "react-bootstrap-icons";
-import "./Navbar.module.css"; // Menggunakan CSS biasa agar aman
+import { 
+  Search, 
+  BookmarkFill, 
+  List, 
+  X,
+  ChevronDown
+} from "react-bootstrap-icons";
+import styles from "./Navbar.module.css";
+
+// IMPORT GAMBAR
+import logoImg from "../assets/inilogo.png"; 
 
 function NavigationBar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-
-  // Efek Scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Navbar 
-      expand="lg" 
-      fixed="top" 
-      expanded={expanded}
-      className={`custom-navbar ${scrolled ? "scrolled" : ""}`}
-    >
-      <Container className="px-lg-5">
+    <header className={styles.headerWrapper}>
+      <div className={styles.headerInner}>
         
-        {/* LOGO & BRAND */}
+        {/* === 1. LOGO (KIRI) === */}
         <LinkContainer to="/">
-          <Navbar.Brand className="brand-logo d-flex align-items-center gap-2">
-            {/* Menggunakan Logo Asli Anda */}
-            <img
-              src="/assets/inilogo.png" 
-              alt="Logo MTs"
-              className="logo-img"
-              width="45"
+          <div className={styles.logoSection}>
+            <img 
+              src={logoImg} 
+              alt="Logo MTs" 
+              className={styles.logoImg} 
             />
-            <div className="brand-text d-flex flex-column">
-              <span className="brand-name">MTs Roudlotush</span>
-              <span className="brand-subtitle">SHOLIHIN</span>
+            <div className={styles.brandText}>
+              <span className={styles.brandTop}>MTs Roudlotush</span>
+              <span className={styles.brandBottom}>SHOLIHIN</span>
             </div>
-          </Navbar.Brand>
+          </div>
         </LinkContainer>
 
-        {/* TOGGLE MOBILE */}
-        <Navbar.Toggle 
-          aria-controls="basic-navbar-nav" 
-          onClick={() => setExpanded(!expanded)}
-          className="border-0 toggle-btn"
-        >
-            <List size={30} />
-        </Navbar.Toggle>
-
-        <Navbar.Collapse id="basic-navbar-nav">
-          
-          {/* NAVIGATION LINKS */}
-          <Nav className="mx-auto align-items-center gap-1">
-            
+        {/* === 2. NAVIGASI DESKTOP (TENGAH) === */}
+        <nav className={styles.navContainer}>
             <LinkContainer to="/">
-                <Nav.Link className="nav-item-custom" onClick={() => setExpanded(false)}>Beranda</Nav.Link>
+              <span className={styles.navLink}>Beranda</span>
             </LinkContainer>
-            
-            {/* DROPDOWN PROFIL (Disesuaikan dengan Route App.jsx) */}
-            <NavDropdown title="Profil" id="profil-dropdown" className="nav-item-custom custom-dropdown">
-                <LinkContainer to="/profil">
-                    <NavDropdown.Item onClick={() => setExpanded(false)}>Sejarah Singkat</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/visi-misi">
-                    <NavDropdown.Item onClick={() => setExpanded(false)}>Visi & Misi</NavDropdown.Item>
-                </LinkContainer>
-            </NavDropdown>
 
-            {/* DROPDOWN PROGRAM (Disesuaikan dengan Route App.jsx) */}
-            <NavDropdown title="Program" id="program-dropdown" className="nav-item-custom custom-dropdown">
-                <LinkContainer to="/program/akademik">
-                    <NavDropdown.Item onClick={() => setExpanded(false)}>Akademik</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/program/pesantren">
-                    <NavDropdown.Item onClick={() => setExpanded(false)}>Kepesantrenan</NavDropdown.Item>
-                </LinkContainer>
-            </NavDropdown>
+            {/* DROPDOWN PROFIL (Berisi Visi Misi) */}
+            <div className={styles.navItemDropdown} style={{position: 'relative'}}>
+                <button className={styles.dropdownToggle}>
+                    PROFIL <ChevronDown size={12} />
+                </button>
+                <div className={styles.dropdownMenu}>
+                    <LinkContainer to="/profil">
+                        <span className={styles.dropdownItem}>Sejarah</span>
+                    </LinkContainer>
+                    <LinkContainer to="/visi-misi">
+                        <span className={styles.dropdownItem}>Visi & Misi</span>
+                    </LinkContainer>
+                </div>
+            </div>
 
-            <LinkContainer to="/berita">
-                <Nav.Link className="nav-item-custom" onClick={() => setExpanded(false)}>Berita</Nav.Link>
-            </LinkContainer>
-            
+            {/* DROPDOWN PROFIL (Berisi Visi Misi) */}
+            <div className={styles.navItemDropdown} style={{position: 'relative'}}>
+                <button className={styles.dropdownToggle}>
+                    PROGRAM <ChevronDown size={12} />
+                </button>
+                <div className={styles.dropdownMenu}>
+                    <LinkContainer to="/akademik">
+                        <span className={styles.dropdownItem}>Akademik</span>
+                    </LinkContainer>
+                    <LinkContainer to="/kepesantrenan">
+                        <span className={styles.dropdownItem}>Kepesantrenan</span>
+                    </LinkContainer>
+                </div>
+            </div>
+
             <LinkContainer to="/prestasi">
-                <Nav.Link className="nav-item-custom" onClick={() => setExpanded(false)}>Prestasi</Nav.Link>
+              <span className={styles.navLink}>Prestasi</span>
             </LinkContainer>
             
+            <LinkContainer to="/berita">
+              <span className={styles.navLink}>Berita</span>
+            </LinkContainer>
+
             <LinkContainer to="/kontak">
-                <Nav.Link className="nav-item-custom" onClick={() => setExpanded(false)}>Kontak</Nav.Link>
+              <span className={styles.navLink}>Kontak</span>
+            </LinkContainer>
+        </nav>
+
+        {/* === 3. ACTIONS & CTA (KANAN) === */}
+        <div className={styles.actionSection}>
+             {/* Ikon Search Minimalis */}
+             <Search size={18} className={styles.iconBtn} title="Cari" />
+             
+             {/* Tombol PPDB */}
+             <LinkContainer to="/ppdb">
+                <span className={styles.ctaButton} role="button">
+                    <BookmarkFill size={16} /> PPDB ONLINE
+                </span>
+             </LinkContainer>
+        </div>
+
+        {/* === 4. MOBILE TOGGLE (KANAN - HP ONLY) === */}
+        <button 
+          className={styles.mobileToggle} 
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={40} /> : <List size={40} />}
+        </button>
+
+      </div>
+
+      {/* === MOBILE MENU DRAWER === */}
+      {isOpen && (
+        <div className={styles.mobileMenu}>
+            <LinkContainer to="/ppdb" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink} style={{color: '#ffc72c', borderBottom: '2px solid #ffc72c'}}>DAFTAR PPDB</span>
             </LinkContainer>
 
-          </Nav>
-
-          {/* CTA BUTTONS */}
-          <div className="d-flex align-items-center mt-3 mt-lg-0">
-            <LinkContainer to="/ppdb">
-                <Button className="btn-ppdb rounded-pill px-4" onClick={() => setExpanded(false)}>
-                PPDB ONLINE
-                </Button>
+            <LinkContainer to="/" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Beranda</span>
             </LinkContainer>
-          </div>
+            
+            {/* Profil Mobile (Langsung list ke bawah atau link induk) */}
+            <LinkContainer to="/profil" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Profil (Sejarah)</span>
+            </LinkContainer>
+            <LinkContainer to="/visi-misi" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>- Visi & Misi</span>
+            </LinkContainer>
 
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            <LinkContainer to="/akademik" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Akademik</span>
+            </LinkContainer>
+            <LinkContainer to="/kepesantrenan" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Kepesantrenan</span>
+            </LinkContainer>
+            <LinkContainer to="/berita" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Berita</span>
+            </LinkContainer>
+             <LinkContainer to="/kontak" onClick={() => setIsOpen(false)}>
+                <span className={styles.mobileLink}>Kontak</span>
+            </LinkContainer>
+        </div>
+      )}
+    </header>
   );
 }
 

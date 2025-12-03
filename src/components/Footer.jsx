@@ -1,59 +1,159 @@
-// src/components/Footer.jsx
-
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { 
+  GeoAltFill, 
+  TelephoneFill, 
+  EnvelopeFill, 
+  Instagram, 
+  Facebook, 
+  Youtube, 
+  Whatsapp 
+} from 'react-bootstrap-icons';
 
-// 1. Import CSS Module yang baru kita buat
 import styles from './Footer.module.css';
+
+// Pastikan path logo sesuai
+import logoImg from '../assets/inilogo.png';
 
 function Footer() {
   return (
-    // 2. Ganti className 'bg-dark' dengan style dari module
     <footer className={styles.footerSection}>
       <Container>
-        <Row>
-
-          {/* KOLOM KIRI: LOGO & ALAMAT */}
-          <Col lg={4} md={5} className="mb-4 mb-md-0">
-            {/* Nanti ganti 'src' ini dengan path logo Anda 
-              (misal: /logo-sekolah.png)
-            */}
+        <Row className="gy-5">
+          
+          {/* KOLOM 1: IDENTITAS SEKOLAH */}
+          <Col lg={4} md={6}>
             <img
-              src="https://via.placeholder.com/180x180.png?text=LOGO+MTSS"
-              alt="Logo MTSS Roudlotush Sholihin"
+              src={logoImg}
+              alt="Logo MTs Roudlotush Sholihin"
               className={styles.footerLogo}
             />
-            <div className={styles.contactInfo}>
-              <p>
-                <strong>MTSS Roudlotush Sholihin</strong><br />
-                Jl. Taman Siswa No.158, Wirogunan, Kec. Mergangsan, 
-                Kota Yogyakarta 55151
-              </p>
-              <p>Telepon: +62 274 3900192</p>
-              <p>Email: info@mtss-rs.sch.id</p>
+            <div className={styles.brandName}>
+              Pondok Pesantren &<br />MTs Roudlotus Sholihin
+            </div>
+            <p className={styles.schoolDesc}>
+              Mencetak generasi santri yang berakhlakul karimah, cerdas secara intelektual, 
+              dan mandiri berlandaskan nilai-nilai Ahlussunnah wal Jama'ah.
+            </p>
+            <div className={styles.socialWrapper}>
+                <a href="https://instagram.com/roudlotushsholihin.yk" target="_blank" rel="noreferrer" className={styles.socialBtn} title="Instagram">
+                    <Instagram size={16}/>
+                </a>
+                <a href="#" className={styles.socialBtn} title="Facebook">
+                    <Facebook size={16}/>
+                </a>
+                <a href="#" className={styles.socialBtn} title="Youtube">
+                    <Youtube size={16}/>
+                </a>
+                <a href="https://wa.me/6285229976036" target="_blank" rel="noreferrer" className={styles.socialBtn} title="WhatsApp Admin">
+                    <Whatsapp size={16}/>
+                </a>
             </div>
           </Col>
 
-          {/* KOLOM KANAN: AKREDITASI & LOGO PARTNER */}
-          <Col lg={8} md={7}>
-            <h5>Akreditasi & Penghargaan</h5>
-            <p>
-              <strong>Akreditasi A-Unggul.</strong> MTSS Roudlotush Sholihin
-              telah mendapatkan Akreditasi A-Unggul dari BAN-S/M sejak 2024. 
-              Sertifikasi ISO 9001:2015 dari British Standards Institution (BSI).
-            </p>
+          {/* KOLOM 2: JELAJAHI (QUICK LINKS) */}
+          <Col lg={2} md={6}>
+            <h5 className={styles.footerHeading}>Jelajahi</h5>
+            <ul className={styles.linkList}>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/profil">
+                    <span className={styles.footerLink} role="button">Profil & Sejarah</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/visi-misi">
+                    <span className={styles.footerLink} role="button">Visi Misi</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/prestasi">
+                    <span className={styles.footerLink} role="button">Prestasi Santri</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/berita">
+                    <span className={styles.footerLink} role="button">Kabar Madrasah</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/ppdb">
+                    <span className={styles.footerLink} role="button">Info PPDB</span>
+                </LinkContainer>
+              </li>
+            </ul>
+          </Col>
+
+          {/* KOLOM 3: PROGRAM AKADEMIK */}
+          <Col lg={3} md={6}>
+            <h5 className={styles.footerHeading}>Program Unggulan</h5>
+            <ul className={styles.linkList}>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/kepesantrenan">
+                    <span className={styles.footerLink} role="button">Tahfidz Al-Qur'an</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/kepesantrenan">
+                    <span className={styles.footerLink} role="button">Kajian Kitab Kuning</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/akademik">
+                    <span className={styles.footerLink} role="button">Bilingual Class</span>
+                </LinkContainer>
+              </li>
+              <li className={styles.linkItem}>
+                <LinkContainer to="/akademik">
+                    <span className={styles.footerLink} role="button">Sains & Robotik</span>
+                </LinkContainer>
+              </li>
+            </ul>
             
-            {/* Baris untuk logo-logo partner */}
-            <div className="d-flex flex-wrap align-items-center">
-              {/* Nanti ganti 'src' ini dengan logo-logo partner Anda 
-              */}
-              <img src="https://via.placeholder.com/100x70.png?text=Akreditasi+A" alt="Akreditasi" className={styles.accreditationLogo} />
-              <img src="https://via.placeholder.com/100x70.png?text=ISO" alt="ISO" className={styles.accreditationLogo} />
-              <img src="https://via.placeholder.com/100x70.png?text=Penghargaan" alt="Penghargaan" className={styles.accreditationLogo} />
+            {/* Badge Akreditasi */}
+            <div className="mt-4">
+               <div className={styles.accreditationBadge}>
+                  TERAKREDITASI
+               </div>
+            </div>
+          </Col>
+
+          {/* KOLOM 4: KONTAK (DATA DARI GAMBAR) */}
+          <Col lg={3} md={6}>
+            <h5 className={styles.footerHeading}>Hubungi Kami</h5>
+            <div className={styles.contactInfo}>
+              <div className={styles.contactItem}>
+                 <GeoAltFill className={styles.contactIcon} />
+                 <span>
+                    Pondok, Bimomartani,<br/>
+                    Kec. Ngemplak, Kab. Sleman,<br/>
+                    D.I. Yogyakarta
+                 </span>
+              </div>
+              <div className={styles.contactItem}>
+                 <TelephoneFill className={styles.contactIcon} />
+                 <div>
+                    <span className="d-block">0852 2997 6036 (Admin)</span>
+                    <span className="d-block small opacity-75">0858 6562 1037</span>
+                 </div>
+              </div>
+              <div className={styles.contactItem}>
+                 <EnvelopeFill className={styles.contactIcon} />
+                 <span style={{fontSize:'0.9rem', wordBreak:'break-all'}}>
+                    mtsroudlotussholihinjogja@gmail.com
+                 </span>
+              </div>
             </div>
           </Col>
 
         </Row>
+
+        {/* COPYRIGHT */}
+        <div className={styles.copyrightSection}>
+          <p className="mb-0">
+            &copy; {new Date().getFullYear()} MTs Roudlotus Sholihin. All Rights Reserved. 
+          </p>
+        </div>
       </Container>
     </footer>
   );

@@ -1,131 +1,152 @@
-/* Footer.module.css */
+/* --- VARIABLES --- */
+:root {
+  --footer-bg: #ffee99;    /* Deep Navy Blue - Senada dengan Navbar */
+  --footer-text: #000000;  /* Off-white / Light Grey */
+  --accent-gold: #24771b;  /* Gold Accent */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
 
-/* Mengatur Background menjadi Cream, dan Text menjadi Hijau Gelap */
 .footerSection {
-  background-color: #FFFDE7; /* Warna Coklat Cream/Krem sesuai Brand */
-  color: #00451f; /* Teks diubah jadi Hijau Gelap agar terbaca di background terang */
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  position: relative;
-  overflow: hidden;
-  padding-top: 5rem;
-  border-top: 5px solid #D4AF37; /* Border atas tetap Emas */
+  background-color: var(--footer-bg);
+  color: #000000;
+  padding: 5rem 0 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  border-top: 5px solid var(--accent-gold); /* Garis aksen emas di atas */
 }
 
-/* --- Typography --- */
+/* --- BRANDING (KIRI) --- */
+.footerLogo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
 .brandName {
-  font-family: 'Playfair Display', serif;
-  font-weight: 800;
-  font-size: 1.6rem;
-  color: #00642e; /* Nama Brand jadi Hijau Utama */
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f3915;
+  line-height: 1.2;
   margin-bottom: 1rem;
-  display: block;
 }
 
+.schoolDesc {
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+}
+
+/* --- HEADINGS --- */
 .footerHeading {
-  font-family: 'Playfair Display', serif;
-  color: #00642e; /* Judul Kolom jadi Hijau Utama */
-  font-weight: 700;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent-gold);
   margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
 }
 
-/* Garis dekoratif Emas di bawah judul */
 .footerHeading::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -8px;
-  width: 40px;
-  height: 3px;
-  background-color: #D4AF37; /* Garis tetap Emas */
-  border-radius: 2px;
+  bottom: -5px;
+  width: 30px;
+  height: 2px;
+  background-color: #204b1c;
+  opacity: 0.3;
 }
 
-.textSmall {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: #4b5563; /* Abu-abu tua untuk deskripsi */
+/* --- LINKS LIST --- */
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* --- Links --- */
+.linkItem {
+  margin-bottom: 12px;
+}
+
 .footerLink {
-  color: #00451f; /* Link jadi Hijau Gelap */
+  color: var(--footer-text);
   text-decoration: none;
-  margin-bottom: 0.8rem;
-  display: block;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footerLink:hover {
-  color: #D4AF37; /* Hover jadi Emas */
-  transform: translateX(5px); /* Efek geser halus */
+  color: var(--accent-gold);
+  padding-left: 5px; /* Efek geser saat hover */
 }
 
-/* --- Social Icons --- */
-.socialLink {
-  width: 42px;
-  height: 42px;
-  background-color: #e8f5e9; /* Background icon jadi hijau sangat muda */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #00642e; /* Icon jadi Hijau */
-  margin-right: 12px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 100, 46, 0.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.socialLink:hover {
-  background-color: #00642e; /* Hover background jadi Hijau Tua */
-  color: #ffffff; /* Icon jadi Putih */
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 100, 46, 0.2);
-}
-
-/* --- Contact Items --- */
+/* --- CONTACT INFO --- */
 .contactItem {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
-  color: #1f2937;
+  gap: 15px;
+  margin-bottom: 15px;
+  opacity: 0.9;
 }
 
 .contactIcon {
-  color: #D4AF37; /* Icon kontak tetap Emas */
-  margin-right: 12px;
+  color: var(--accent-gold);
+  font-size: 1.2rem;
   margin-top: 3px;
   flex-shrink: 0;
 }
 
-/* --- Accreditation Logos --- */
-.accreditationLogo {
-  height: 40px;
-  width: auto;
-  margin-right: 15px;
-  margin-top: 10px;
-  filter: grayscale(100%);
-  opacity: 0.7;
+/* --- SOCIAL & ACCREDITATION --- */
+.socialWrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.socialBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f681d;
   transition: all 0.3s;
+  text-decoration: none;
 }
 
-.accreditationLogo:hover {
-  filter: grayscale(0%);
-  opacity: 1;
+.socialBtn:hover {
+  background: var(--accent-gold);
+  color: var(--footer-bg);
+  transform: translateY(-3px);
 }
 
-/* --- Copyright Bar --- */
-/* Bagian paling bawah dibuat gelap untuk kontras penutup */
-.copyright {
-  background-color: #003318; /* Hijau Gelap */
-  padding: 1.5rem 0;
+.accreditationBadge {
+  background: #1e6122;
+  padding: 8px 15px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 800;
+  color: var(--footer-bg);
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  border-left: 4px solid var(--accent-gold);
+}
+
+/* --- COPYRIGHT BOTTOM --- */
+.copyrightSection {
   margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
   font-size: 0.85rem;
-  color: #cbd5e1; /* Teks putih redup */
+  opacity: 0.6;
 }

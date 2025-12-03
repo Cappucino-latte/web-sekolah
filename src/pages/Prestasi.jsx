@@ -74,7 +74,7 @@ function Prestasi() {
             <Fade direction="up" triggerOnce>
                 <div className="text-center">
                     <span className={styles.heroLabel}>HALL OF FAME</span>
-                    <h1 className={styles.heroTitle}>Student Achievements</h1>
+                    <h1 className={styles.heroTitle}>Prestasi Siswa</h1>
                     <div className={styles.heroLine}></div>
                     <p className={styles.heroSubtitle}>
                         Rekam jejak keunggulan santri MTSS Roudlotush Sholihin dalam mengukir sejarah dan tinta emas di berbagai kompetisi.

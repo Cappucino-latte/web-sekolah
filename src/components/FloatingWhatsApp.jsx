@@ -9,7 +9,7 @@ function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   // --- KONFIGURASI ---
-  const phoneNumber = '6281234567890'; // Awali dengan 62 (kode negara)
+  const phoneNumber = '6285229976036'; // Awali dengan 62 (kode negara)
   const schoolName = 'MTSS Roudlotush Sholihin';
   const defaultMessage = `Assalamualaikum, saya ingin bertanya tentang ${schoolName}...`;
   // -------------------

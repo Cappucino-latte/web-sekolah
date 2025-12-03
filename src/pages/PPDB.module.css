@@ -1,0 +1,256 @@
+/* --- VARIABLES (Sama dengan Prestasi) --- */
+:root {
+    --primary-green: #15803d; /* Emerald Green */
+    --primary-gold: #d4a373;  /* Soft Gold */
+    --text-dark: #1e293b;     /* Slate Dark */
+    --text-grey: #64748b;     /* Slate Grey */
+    --bg-light: #f8fafc;      /* Light Background */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+.pageWrapper {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+}
+
+/* --- HERO SECTION (Style Prestasi) --- */
+.heroSection {
+    padding: 6rem 0 4rem;
+    background-color: #ffee99;
+    border-bottom: 1px solid #f0ede2;
+    text-align: center;
+}
+
+.heroLabel {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.heroTitle {
+    font-family: var(--font-serif);
+    font-size: 3.5rem; /* Sedikit lebih kecil agar muat */
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.heroLine {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-gold);
+    margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+    font-size: 1.15rem;
+    color: var(--text-grey);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- CONTENT SECTION --- */
+.contentSection {
+    padding: 6rem 0;
+}
+
+.sectionHeading {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.sectionLine {
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-green);
+    margin: 0 auto 3rem;
+}
+
+/* --- REQ CARD (Style Modern Clean) --- */
+.reqCard {
+    background: #ffee99;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Soft Shadow */
+    transition: transform 0.3s ease;
+}
+
+.reqCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.reqItem {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: 0.5rem 0;
+}
+
+.checkIcon {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+/* --- FLOW SECTION (Background Light) --- */
+.flowSection {
+    padding: 6rem 0;
+    background-color: var(--bg-light); 
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.stepCard {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 8px; /* Lebih kotak seperti Prestasi */
+    height: 100%;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.stepCard:hover {
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.stepNumber {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 700;
+    color: #f1f5f9; /* Angka besar transparan di background */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+    z-index: 1;
+}
+
+.stepIconWrapper {
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.stepTitle {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 2;
+}
+
+.stepDesc {
+    color: var(--text-grey);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.stepLink {
+    display: inline-block;
+    color: var(--primary-green);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.stepLink:hover {
+    border-bottom-color: var(--primary-gold);
+}
+
+/* --- CONTACT SECTION --- */
+.contactSection {
+    padding: 6rem 0;
+    background-color: white;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s;
+}
+
+.contactItem:hover {
+    border-color: var(--primary-green);
+    background: white;
+}
+
+.contactIcon {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    margin-right: 1.5rem;
+}
+
+.contactLabel {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+}
+
+.contactValue {
+    color: var(--text-grey);
+    font-size: 0.95rem;
+}
+
+.mapCard {
+    border-radius: 4px;
+    overflow: hidden;
+    filter: grayscale(100%); /* Efek grayscale biar estetik */
+    transition: 0.5s;
+    border: 1px solid #e2e8f0;
+}
+
+.mapCard:hover {
+    filter: grayscale(0%);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    .reqCard {
+        padding: 1.5rem;
+    }
+}

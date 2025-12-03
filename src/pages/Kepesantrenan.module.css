@@ -1,0 +1,304 @@
+/* --- VARIABLES --- */
+:root {
+    --primary: #ffee99;       
+    --secondary: #0f172a;     
+    --accent: #15803d;       
+    --text-main: #000000;     
+    --text-muted: #000000;    
+    --bg-white: #ffffff;
+  }
+  
+  .pageWrapper {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-white);
+  }
+  
+  /* --- HERO SECTION --- */
+  .heroSection {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      background-image: url('https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=1920&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+  }
+  
+  .heroOverlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(137, 101, 3, 0.7), rgba(246, 210, 83, 0.9));
+  }
+  
+  .heroBadge {
+      display: inline-block;
+      background-color: var(--primary); /* Badge Kuning */
+      color: var(--text-main);
+      padding: 5px 15px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+  }
+  
+  .heroTitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+  }
+  
+  .heroSubtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #cbd5e1;
+  }
+  
+  .heroLine {
+      width: 60px;
+      height: 4px;
+      background-color: var(--primary);
+      margin: 1.5rem auto;
+  }
+  
+  /* --- PHILOSOPHY SECTION --- */
+  .philosophySection {
+      padding: 6rem 0;
+  }
+  
+  .imgFrame {
+      position: relative;
+      padding: 1rem;
+  }
+  
+  .philosophyImg {
+      width: 100%;
+      border-radius: 8px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+  
+  .accentBox {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100px; height: 100px;
+      background-color: var(--primary); /* Kuning */
+      z-index: 1;
+      border-radius: 8px;
+  }
+  
+  .sectionTag {
+      color: var(--accent); /* Hijau */
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 0.5rem;
+  }
+  
+  .sectionHeading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+  }
+  
+  .quoteBox {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      font-weight: 600;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+  }
+  
+  /* --- PROGRAM SECTION (STYLE KUNING) --- */
+  .programSection {
+      padding: 6rem 0;
+      background-color: #fffbeb; /* Background Kuning Sangat Muda (Cream) */
+      color: var(--text-main);
+  }
+  
+  .programTag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+  }
+  
+  .programHeading {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff; /* Teks Putih agar kontras di Heading Kuning? Atau Hitam? */
+      /* Opsional: Jika ingin teks judul putih stroke/shadow, tapi biasanya hitam lebih bersih */
+      color: var(--text-main); 
+  }
+  
+  .programCard {
+      background-color: rgba(255, 255, 255, 0.6); /* Putih transparan */
+      border: 1px solid rgba(0,0,0,0.05);
+      padding: 2.5rem 2rem;
+      border-radius: 16px; /* Rounded corners */
+      text-align: center;
+      transition: 0.3s;
+      height: 100%;
+  }
+  
+  .programCard:hover {
+      background-color: #ffffff;
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  }
+  
+  .iconCircle {
+      width: 80px; height: 80px;
+      background-color: #dcfce7; /* Hijau Sangat Muda */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--accent); /* Ikon Hijau */
+      transition: 0.3s;
+  }
+  
+  .programCard:hover .iconCircle {
+      background-color: var(--accent);
+      color: white;
+  }
+  
+  .cardTitle {
+      font-family: 'Inter', sans-serif; /* Font Sans Modern */
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+  }
+  
+  .cardDesc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+  }
+  
+  /* --- TEAM SECTION --- */
+  .teamSection {
+      padding: 6rem 0;
+      background-color: white;
+  }
+  
+  .separatorCenter {
+      width: 50px; height: 3px;
+      background-color: var(--primary);
+      margin: 1rem auto;
+  }
+  
+  .teamCard {
+      text-align: center;
+      padding: 1rem;
+      transition: 0.3s;
+  }
+  
+  .teamCard:hover {
+      transform: translateY(-5px);
+  }
+  
+  .teamImgWrapper {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #fce68f; /* Border kuning muda */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .teamImg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+  }
+  
+  .leaderName {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 0.2rem;
+  }
+  
+  .leaderRole {
+      font-size: 0.9rem;
+      color: var(--accent); /* Hijau */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+  }
+  
+  /* --- FACILITIES --- */
+  .facilitySection {
+      padding: 6rem 0;
+      background-color: #f8fafc;
+  }
+  
+  .facilityList {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+  }
+  
+  .facilityList li {
+      padding: 0.5rem 0;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      color: var(--text-main);
+  }
+  
+  .checkIcon {
+      color: var(--accent);
+      margin-right: 10px;
+  }
+  
+  .facilityImg {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  /* --- CTA --- */
+  .ctaSection {
+      padding: 5rem 0;
+      background-color: var(--accent); /* Hijau Pesantren */
+      background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  }
+  
+  .btnCta {
+      background-color: var(--primary); /* Tombol Kuning */
+      color: var(--text-main);
+      border: none;
+      padding: 12px 32px;
+      font-weight: 700;
+      border-radius: 4px;
+      transition: 0.3s;
+  }
+  
+  .btnCta:hover {
+      background-color: white;
+      color: var(--accent);
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+      .heroTitle { font-size: 2.5rem; }
+      .philosophySection { text-align: center; }
+      .quoteBox { border-left: none; border-top: 4px solid var(--primary); border-radius: 8px; }
+  }

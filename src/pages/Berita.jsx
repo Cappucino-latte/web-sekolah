@@ -67,7 +67,7 @@ function Berita() {
           <Fade direction="up" triggerOnce>
             <div className="text-center">
               <span className={styles.heroLabel}>UPDATES & INSIGHTS</span>
-              <h1 className={styles.heroTitle}>Newsroom</h1>
+              <h1 className={styles.heroTitle}>Berita</h1>
               <div className={styles.heroLine}></div>
               <p className={styles.heroSubtitle}>
                 Menyelami cerita, pencapaian, dan perkembangan terbaru dari civitas akademika MTSS Roudlotush Sholihin.
