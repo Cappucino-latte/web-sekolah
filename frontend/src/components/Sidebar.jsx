@@ -32,10 +32,10 @@ function Sidebar() {
     <span>Kelola User</span>
   </li>
 
-  <li onClick={() => navigate("/admin/program")} className="sidebar-item">
+  {/* <li onClick={() => navigate("/admin/program")} className="sidebar-item">
     <ClipboardList size={18} />
     <span>Program</span>
-  </li>
+  </li> */}
 
   <li onClick={() => navigate("/admin/berita")} className="sidebar-item">
     <Newspaper size={18} />

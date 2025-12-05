@@ -1,0 +1,402 @@
+/* --- GLOBAL VARIABLES (Disamakan dengan Prestasi) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+    --primary-green: #15803d; 
+    --primary-gold: #d4a373;
+    --dark-green: #0f5132;  
+    --text-dark: #000000;     
+    --text-grey: #475569;
+    --text-muted: #94a3b8;     
+    --bg-light: #f8fafc;
+    --hero-bg: #ffee99;      
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+.pageWrapper {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* --- TYPOGRAPHY UTILS --- */
+.heading {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.headingLight {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.subHeading {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* --- 1. HERO SECTION (Re-styled to match Prestasi) --- */
+.heroSection {
+    position: relative;
+    padding: 8rem 0 8rem; /* Padding bottom ditambah untuk wave */
+    background-color: var(--hero-bg);
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* Sembunyikan overlay gelap karena ganti style minimalis */
+.heroOverlay {
+    display: none;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.badgeHero {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--primary-green);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    background: transparent;
+    color: var(--primary-green);
+    text-transform: uppercase;
+}
+
+.heroTitle {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.heroSubtitle {
+    font-size: 1.15rem;
+    color: var(--text-grey);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+
+
+.shapeFill {
+    fill: #ffffff; /* Putih agar nyambung ke section stats */
+}
+
+/* --- 2. STATS CARD (Clean Style) --- */
+.statsContainer {
+    position: relative;
+    z-index: 10;
+    margin-top: -50px; /* Pull up sedikit */
+}
+
+.statsCard {
+    background: white;
+    border-radius: 4px; /* Radius lebih tajam sesuai style card prestasi */
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.statItem {
+    text-align: center;
+    border-right: 1px solid #e2e8f0;
+    padding: 1rem;
+}
+.statItem:last-child { border-right: none; }
+
+.statIcon {
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.statItem h3 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 2.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.statItem p {
+    color: var(--text-grey);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* --- 3. HISTORY SECTION --- */
+.sectionHistory {
+    padding: 6rem 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.imageStack {
+    position: relative;
+    padding: 2rem;
+}
+
+.imgBack {
+    width: 80%;
+    border-radius: 4px;
+    margin-left: 20%;
+    filter: grayscale(100%);
+    transition: 0.5s;
+    opacity: 0.8;
+}
+
+.imgFront {
+    width: 75%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 5px solid white;
+    z-index: 2;
+}
+
+.experienceBadge {
+    position: absolute;
+    top: 40%;
+    left: -10px;
+    background: var(--primary-green);
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    box-shadow: 0 4px 15px rgba(21, 128, 61, 0.3);
+    font-family: var(--font-serif);
+}
+
+.historyText {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-grey);
+}
+
+.featureList {
+    margin: 1.5rem 0;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.quoteBox {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary-gold);
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.quoteIcon { color: var(--primary-gold); flex-shrink: 0; }
+.quoteBox p { 
+    margin: 0; 
+    font-style: italic; 
+    color: var(--primary-green); 
+    font-family: var(--font-serif);
+    font-weight: 600; 
+}
+
+/* --- 4. VISION MISSION --- */
+.visionSection {
+    padding: 6rem 0;
+    background: var(--primary-green);
+    color: white;
+}
+
+.dividerCenter {
+    width: 60px;
+    height: 4px;
+    background: var(--primary-gold);
+    margin: 1rem auto;
+}
+
+/* Card Visi Misi dibuat lebih solid/clean */
+.visionCard {
+    background: rgba(255, 255, 255, 0.1); /* Sedikit transparan */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    height: 100%;
+    transition: transform 0.3s ease;
+    color: white;
+}
+
+.visionCard:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+}
+
+.iconCircle {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%; /* Circle tetap ok untuk icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+}
+
+.visionCard h3 {
+    font-family: var(--font-serif);
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+}
+
+.visionCard ul { padding-left: 1.2rem; }
+.visionCard ul li { margin-bottom: 0.5rem; opacity: 0.9; font-weight: 300; }
+.visionCard p { opacity: 0.9; font-weight: 300; line-height: 1.6; }
+
+/* --- 5. GALLERY SECTION --- */
+.gallerySection {
+    padding: 6rem 0;
+    background: var(--bg-light);
+}
+
+/* Customizing Tabs (Matching .filterBtn style) */
+.customTabs {
+    border: none;
+    gap: 1rem;
+}
+
+.customTabs :global(.nav-item) {
+    margin: 0;
+}
+
+.customTabs :global(.nav-link) {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    padding: 10px 30px;
+    border-radius: 50px; /* Pill shape */
+    color: var(--text-grey);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.customTabs :global(.nav-link:hover) {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+.customTabs :global(.nav-link.active) {
+    background-color: var(--primary-green);
+    color: white;
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 15px rgba(21, 128, 61, 0.25);
+}
+
+/* Carousel Styling */
+.carouselWrapper {
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.carouselSlide {
+    position: relative;
+    height: 500px;
+}
+
+.imgContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imgContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth zoom like Prestasi */
+}
+
+.carouselSlide:hover .imgContainer img {
+    transform: scale(1.05);
+}
+
+.captionOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+}
+
+.captionContent h3 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.captionContent p {
+    font-weight: 300;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .heroTitle { font-size: 2.5rem; }
+    .heroSection { padding: 6rem 0 4rem; }
+    
+    .statsContainer { margin-top: 0; }
+    .statItem { border-right: none; border-bottom: 1px solid #e2e8f0; padding: 1.5rem 0; }
+    
+    .carouselSlide { height: 350px; }
+    
+    .imgBack { margin-left: 10%; width: 90%; }
+    .experienceBadge { left: 0; width: 70px; height: 70px; font-size: 0.8rem; }
+}

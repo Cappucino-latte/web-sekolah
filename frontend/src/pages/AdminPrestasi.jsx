@@ -9,12 +9,12 @@ export default function AdminPrestasi() {
     kategori: "Akademik",
     tanggal: "",
     deskripsi: "",
+    tingkat: "",
   });
 
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  // Fetch data dari backend
   const fetchData = async () => {
     try {
       const res = await axios.get("http://localhost:5001/api/prestasi");
@@ -28,7 +28,6 @@ export default function AdminPrestasi() {
     fetchData();
   }, []);
 
-  // Submit data + upload gambar
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,7 +36,8 @@ export default function AdminPrestasi() {
     fd.append("judul", form.judul);
     fd.append("kategori", form.kategori);
     fd.append("tanggal", form.tanggal);
-    fd.append("deskripsi", form.deskripsi); // ⬅️ penting
+    fd.append("deskripsi", form.deskripsi);
+    fd.append("tingkat", form.tingkat); // <-- tambah ini
 
     try {
       await axios.post("http://localhost:5001/api/prestasi/upload", fd);
@@ -48,11 +48,11 @@ export default function AdminPrestasi() {
         kategori: "Akademik",
         tanggal: "",
         deskripsi: "",
+        tingkat: "",
       });
 
       setFile(null);
       setPreview(null);
-
       fetchData();
     } catch (err) {
       alert("Upload gagal!");
@@ -75,61 +75,69 @@ export default function AdminPrestasi() {
     <div className={styles.container}>
       <h2>Admin Prestasi</h2>
 
-      {/* FORM INPUT */}
       <form className={styles.form} onSubmit={handleSubmit}>
-  <input
-    type="text"
-    placeholder="Judul Prestasi"
-    value={form.judul}
-    onChange={(e) => setForm({ ...form, judul: e.target.value })}
-  />
+        <input
+          type="text"
+          placeholder="Judul Prestasi"
+          value={form.judul}
+          onChange={(e) => setForm({ ...form, judul: e.target.value })}
+        />
 
-  <select
-    value={form.kategori}
-    onChange={(e) => setForm({ ...form, kategori: e.target.value })}
-  >
-    <option>Akademik</option>
-    <option>Olahraga</option>
-    <option>Seni</option>
-  </select>
+        <select
+          value={form.kategori}
+          onChange={(e) => setForm({ ...form, kategori: e.target.value })}
+        >
+          <option>Akademik</option>
+          <option>Olahraga</option>
+          <option>Seni</option>
+        </select>
 
-  <input
-    type="date"
-    value={form.tanggal}
-    onChange={(e) => setForm({ ...form, tanggal: e.target.value })}
-  />
+        <input
+          type="date"
+          value={form.tanggal}
+          onChange={(e) => setForm({ ...form, tanggal: e.target.value })}
+        />
 
-  {/* ⬇️ Tambahkan ini */}
-  <textarea
-    placeholder="Deskripsi Prestasi"
-    value={form.deskripsi}
-    onChange={(e) => setForm({ ...form, deskripsi: e.target.value })}
-    className={styles.textarea}
-  />
+        {/* INPUT TINGKAT */}
+        <select
+          value={form.tingkat}
+          onChange={(e) => setForm({ ...form, tingkat: e.target.value })}
+        >
+          <option value="">Pilih Tingkat</option>
+          <option value="Kabupaten">Kabupaten</option>
+          <option value="Provinsi">Provinsi</option>
+          <option value="Nasional">Nasional</option>
+          <option value="Internasional">Internasional</option>
+        </select>
 
-  <input
-    type="file"
-    accept="image/*"
-    onChange={(e) => {
-      setFile(e.target.files[0]);
-      setPreview(URL.createObjectURL(e.target.files[0]));
-    }}
-  />
+        <textarea
+          placeholder="Deskripsi Prestasi"
+          value={form.deskripsi}
+          onChange={(e) => setForm({ ...form, deskripsi: e.target.value })}
+          className={styles.textarea}
+        />
 
-  <button type="submit">Simpan</button>
-</form>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            setFile(e.target.files[0]);
+            setPreview(URL.createObjectURL(e.target.files[0]));
+          }}
+        />
 
+        <button type="submit">Simpan</button>
+      </form>
 
-      {/* PREVIEW GAMBAR */}
       {preview && <img src={preview} className={styles.preview} />}
 
-      {/* TABLE DATA */}
       <table className={styles.table}>
         <thead>
           <tr>
             <th>Gambar</th>
             <th>Judul</th>
             <th>Kategori</th>
+            <th>Tingkat</th>
             <th>Tanggal</th>
             <th>Deskripsi</th>
             <th>Aksi</th>
@@ -144,6 +152,7 @@ export default function AdminPrestasi() {
               </td>
               <td>{p.judul}</td>
               <td>{p.kategori}</td>
+              <td>{p.tingkat}</td> {/* <-- tampilkan tingkat */}
               <td>{p.tanggal}</td>
               <td>{p.deskripsi}</td>
               <td>

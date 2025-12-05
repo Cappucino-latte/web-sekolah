@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -7,8 +7,12 @@ import Berita from "./pages/Berita.jsx";
 import Prestasi from "./pages/Prestasi.jsx";
 import Sejarah from "./pages/Sejarah.jsx";
 import VisiMisi from "./pages/VisiMisi.jsx";
-import Struktur from "./pages/Struktur.jsx";
 import Fasilitas from "./pages/Fasilitas.jsx";
+
+import Profil from "./pages/Profil.jsx";
+import Akademik from "./pages/Akademik.jsx";
+import Kepesantrenan from "./pages/Kepesantrenan.jsx";
+import PPDB from "./pages/PPDB.jsx";
 
 import MainNavbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -32,17 +36,20 @@ function App() {
       {/* ROUTE PUBLIC PAKAI LAYOUT (ADA NAVBAR & FOOTER) */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="visi-misi" element={<VisiMisi />} />
+        <Route path="profil" element={<Profil />} />
         <Route path="tentang" element={<About />} />
         <Route path="tentang/sejarah" element={<Sejarah />} />
         <Route path="tentang/visi-misi" element={<VisiMisi />} />
-        <Route path="tentang/struktur" element={<Struktur />} />
         <Route path="tentang/fasilitas" element={<Fasilitas />} />
         <Route path="kontak" element={<Contact />} />
         <Route path="berita" element={<Berita />} />
         <Route path="prestasi" element={<Prestasi />} />
+        <Route path="akademik" element={<Akademik />} />
+        <Route path="kepesantrenan" element={<Kepesantrenan />} />
+        <Route path="ppdb" element={<PPDB />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="prestasi" element={<Prestasi />} />
         <Route path="detail-prestasi/:id" element={<DetailPrestasi />} />
         <Route path="detail-berita/:id" element={<DetailBerita />} />
       </Route>

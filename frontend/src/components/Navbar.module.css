@@ -1,0 +1,334 @@
+/* --- COLORS & FONTS --- */
+:root {
+  --header-bg: #ffee99; /* Deep Navy Blue */
+  --accent-gold: #ffc72c; /* Kuning Emas */
+  --text-white: #245522;
+  --text-dark: #002147;
+  --font-primary: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+}
+
+/* --- MAIN CONTAINER --- */
+.headerWrapper {
+  background-color: var(--header-bg) !important;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  height: 70px; /* Tinggi fix untuk satu baris */
+  transition: all 0.3s ease;
+}
+
+.headerInner {
+  max-width: 1400px; /* Membatasi lebar agar rapi di layar lebar */
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo Kiri, Menu Kanan */
+  padding: 0 25px;
+}
+
+/* --- LOGO SECTION (LEFT) --- */
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 45px;
+  width: auto;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brandTop {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #504115;
+  opacity: 0.9;
+}
+
+.brandBottom {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #11420f;
+}
+
+/* --- NAVIGATION (CENTER/RIGHT) --- */
+.navContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Jarak antar menu */
+}
+
+/* Link Menu Biasa */
+.navLink {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background: transparent !important;
+  border: none;
+}
+
+.navLink:hover {
+  color: #504115 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+.navLink:focus,
+.navLink:active {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+/* Garis bawah animasi saat hover */
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* --- DROPDOWN CUSTOM --- */
+/* Kita styling tombol dropdown agar mirip link biasa */
+.dropdownToggle {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background: transparent !important;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdownToggle:hover {
+  color: #504115 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+.dropdownToggle:focus,
+.dropdownToggle:active {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+/* Menu Dropdown-nya */
+.dropdownMenu {
+  position: absolute;
+  top: 60px; /* Jarak dari header */
+  background-color: var(--header-bg);
+  border-top: 3px solid var(--accent-gold);
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Tampilkan dropdown saat parent di-hover (Butuh logika CSS/JS tambahan atau hover state) */
+/* Di React Bootstrap biasanya pakai className 'show' */
+.navItemDropdown:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  color: var(--text-white) !important;
+  padding: 10px 20px;
+  text-decoration: none !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: background 0.2s;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--accent-gold) !important;
+  padding-left: 25px; /* Efek geser kanan */
+  text-decoration: none !important;
+}
+
+.dropdownItem:focus,
+.dropdownItem:active {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+
+/* --- RIGHT ACTIONS (ICONS & CTA) --- */
+.actionSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 30px;
+  border-left: 1px solid rgba(255,255,255,0.2);
+  margin-left: 10px;
+  height: 40px;
+}
+
+.iconBtn {
+  color: var(--text-white);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.iconBtn:hover {
+  color: var(--accent-gold);
+}
+
+.ctaButton {
+  background-color: var(--accent-gold);
+  color: var(--text-dark);
+  padding: 10px 24px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-radius: 4px; /* Sedikit rounded biar modern */
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 199, 44, 0.4);
+}
+
+/* --- MOBILE TOGGLE --- */
+.mobileToggle {
+  display: none !important;
+  background: none !important;
+  border: none;
+  color: var(--text-white) !important;
+  cursor: pointer;
+  outline: none !important;
+}
+
+.mobileToggle:hover,
+.mobileToggle:focus,
+.mobileToggle:active {
+  background: none !important;
+  color: var(--text-white) !important;
+  outline: none !important;
+}
+
+/* --- MOBILE MENU --- */
+.mobileMenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: var(--header-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.mobileLink {
+  color: var(--text-white) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  background: transparent !important;
+  transition: color 0.3s ease;
+}
+
+.mobileLink:hover {
+  color: var(--accent-gold) !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+.mobileLink:focus,
+.mobileLink:active {
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+/* --- RESPONSIVE --- */
+/* Desktop - tampilkan menu normal, sembunyikan hamburger */
+@media (min-width: 992px) {
+  .navContainer, .actionSection {
+    display: flex !important;
+  }
+  .mobileToggle {
+    display: none !important;
+  }
+  .mobileMenu {
+    display: none !important;
+  }
+}
+
+/* Tablet & Mobile - sembunyikan menu desktop, tampilkan hamburger */
+@media (max-width: 991px) {
+  .navContainer, .actionSection {
+    display: none !important;
+  }
+  .mobileToggle {
+    display: block !important;
+  }
+}

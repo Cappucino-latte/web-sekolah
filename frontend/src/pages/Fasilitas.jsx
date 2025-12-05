@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styles from './ProfilPerusahaan.module.css';
+import styles from './Profil.module.css';
 
 function Fasilitas() {
   const fasilitasList = [

@@ -1,424 +1,579 @@
-import React from "react";
-import Hero from "../components/Hero.jsx";
-import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Fade } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
+import { Fade, Slide } from "react-awesome-reveal";
 import styles from "./Home.module.css";
+import { supabase } from "../lib/supabaseClient";
 
-// Import Ikon
+
+// Import Icons
 import {
   ArrowRight,
-  CheckCircleFill,
   Trophy,
+  Award,
   Book,
   Building,
-  Display,
-  PencilSquare,
-  Telephone,
+  StarFill,
+  CalendarEvent,
+  CheckCircleFill,
+  Quote,
+  ArrowUpRight
 } from "react-bootstrap-icons";
 
-// Data Berita (tetap)
-const newsData = [
-  // ... (data Anda tidak berubah)
+// --- DATA CONTENT ---
+const heroSlides = [
   {
-    slug: "/berita/slug-berita-satu",
-    title: "Rekrutmen Guru Pendidikan Pancasila",
-    date: "Jul 31, 2025",
-    category: "Berita",
-    excerpt: "Syarat: Beragama Islam, memiliki ijazah minimal S1, dan berkomitmen mendidik generasi berakhlak.",
-    color: "primary"
+    id: 1,
+    image: "https://images.unsplash.com/photo-1541339907198-e021fc9e2752?q=80&w=1920",
+    title: "Membangun Generasi Berkarakter",
+    subtitle: "Pondasi intelektual dan spiritual yang kokoh untuk menghadapi tantangan global."
   },
   {
-    slug: "/berita/slug-berita-dua",
-    title: "Rekrutmen Guru Matematika & Seni",
-    date: "Jul 23, 2025",
-    category: "Berita",
-    excerpt: "Dibutuhkan Guru Matematika dan Seni Rupa untuk memperkuat tenaga pendidik kami.",
-    color: "success"
+    id: 2,
+    image: "https://images.unsplash.com/photo-1577896332189-d42125f171bc?q=80&w=1920",
+    title: "Sinergi Tradisi dan Inovasi",
+    subtitle: "Memadukan kedalaman ilmu agama (Kitab Kuning) dengan kemajuan sains & teknologi."
   },
   {
-    slug: "/berita/slug-berita-tiga",
-    title: "Rekrutmen Guru Teknologi Informasi",
-    date: "Jul 7, 2025",
-    category: "Berita",
-    excerpt: "Satu orang guru TIK dengan kompetensi digital yang mumpuni untuk mendukung pembelajaran modern.",
-    color: "info"
+    id: 3,
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1920",
+    title: "Siap Berprestasi",
+    subtitle: "Lingkungan belajar yang mendukung santri untuk menggali potensi terbaik mereka."
   }
 ];
 
-// Data Program (tetap)
-const programsData = [
-  // ... (data Anda tidak berubah)
-  { 
-    title: "Botanical", 
-    img: "https://source.unsplash.com/400x300/?botanical",
-    description: "Program pengenalan dan penelitian flora"
+const facilitiesData = [
+  {
+    icon: <Building />,
+    title: "Gedung Milik Sendiri",
+    desc: "Bangunan 3 lantai representatif & kondusif."
   },
-  { 
-    title: "Tahfizh", 
-    img: "https://source.unsplash.com/400x300/?quran",
-    description: "Menghafal Al-Quran dengan metode modern"
+  {
+    icon: <Book />,
+    title: "Perpustakaan Digital",
+    desc: "Akses ribuan buku & e-book terintegrasi."
   },
-  { 
-    title: "Entrepreneurship", 
-    img: "https://source.unsplash.com/400x300/?business,market",
-    description: "Mengembangkan jiwa wirausaha muda"
+  {
+    icon: <Trophy />,
+    title: "Sport Center",
+    desc: "Lapangan Futsal, Basket, & Badminton."
   },
-  { 
-    title: "Research", 
-    img: "https://source.unsplash.com/400x300/?research,lab",
-    description: "Riset dan inovasi sains terapan"
+  {
+    icon: <Award />,
+    title: "Lab Multimedia",
+    desc: "Komputer High-End untuk desain & coding."
   }
 ];
 
-// --- PERUBAHAN ---
-// Data Info diperbarui dengan Komponen Ikon
-const infoData = [
+const featuresData = [
   {
-    title: "Program Unggulan",
-    icon: <Trophy size={24} />,
-    description: "Tahfizh, Research & Entrepreneurship",
+    image: "https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=600",
+    title: "Tahfidz & Kitab Kuning",
+    desc: "Program unggulan hafalan Al-Qur'an dan kajian kitab klasik metode praktis."
   },
   {
-    title: "Kurikulum Sekolah",
-    icon: <Book size={24} />,
-    description: "Kurikulum Merdeka & Cambridge",
+    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=600",
+    title: "Akreditasi A (Unggul)",
+    desc: "Jaminan mutu pendidikan yang diakui secara nasional oleh BAN-S/M."
   },
   {
-    title: "Semi Boarding",
-    icon: <Building size={24} />,
-    description: "Asrama dengan pendampingan 24/7",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600",
+    title: "Ekosistem Digital",
+    desc: "Pembelajaran berbasis Smart Classroom, CBT, dan Learning Management System."
   },
   {
-    title: "Sarana Digital",
-    icon: <Display size={24} />,
-    description: "Lab komputer & pembelajaran digital",
+    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600",
+    title: "Boarding School",
+    desc: "Asrama yang nyaman dengan pembinaan karakter 24 jam."
+  }
+];
+
+const schoolPrograms = [
+  {
+    title: "Sains & Riset",
+    img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600",
+    description: "Laboratorium modern untuk pengembangan nalar kritis."
   },
+  {
+    title: "Entrepreneur",
+    img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600",
+    description: "Inkubator bisnis siswa untuk mencetak wirausahawan."
+  },
+  {
+    title: "Kelas Digital",
+    img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600",
+    description: "Pembelajaran coding, desain grafis, dan IoT."
+  },
+  {
+    title: "Bilingual",
+    img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600",
+    description: "Program intensif Bahasa Arab dan Inggris."
+  }
 ];
 
 function Home() {
+  const navigate = useNavigate();
+  const [newsData, setNewsData] = useState([]);
+  const [achievementsData, setAchievementsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch berita dari Supabase
+  useEffect(() => {
+    const fetchBerita = async () => {
+      const { data, error } = await supabase
+        .from("berita")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.error("Error fetching berita:", error);
+        return;
+      }
+
+      const formatted = data.map((b) => {
+        const dateObj = new Date(b.tanggal || b.created_at);
+        const month = dateObj.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const formattedDate = `${day} ${month} ${year}`;
+
+        return {
+          id: b.id,
+          slug: `/detail-berita/${b.id}`,
+          title: b.judul,
+          date: formattedDate,
+          category: b.kategori || "Info Sekolah",
+          image: b.thumbnail || "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600"
+        };
+      });
+
+      setNewsData(formatted);
+    };
+
+    fetchBerita();
+  }, []);
+
+  // Fetch prestasi dari Supabase
+  useEffect(() => {
+    const fetchPrestasi = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("prestasi")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(4);
+
+      if (error) {
+        console.error("Error fetching prestasi:", error);
+        setLoading(false);
+        return;
+      }
+
+      const formatted = data.map((p) => {
+        const dateObj = new Date(p.tanggal || p.created_at);
+        const year = dateObj.getFullYear();
+
+        return {
+          id: p.id,
+          image: p.gambar || "https://images.unsplash.com/photo-1581092921461-eab62e97a783?q=80&w=800",
+          level: p.tingkat || "Kabupaten",
+          year: year.toString(),
+          title: p.judul,
+          desc: p.deskripsi || "Prestasi membanggakan santri kami."
+        };
+      });
+
+      setAchievementsData(formatted);
+      setLoading(false);
+    };
+
+    fetchPrestasi();
+  }, []);
+
   return (
-    <div className={styles.homeWrapper}>
-      {/* === HERO SECTION === */}
-      <Hero />
-
-      {/* === BERITA SEKOLAH === */}
-      <Fade direction="up" triggerOnce>
-        {/* Menggunakan 'py-5' (padding y-axis) & 'bg-light' dari Bootstrap */}
-        <section className="py-5 bg-light">
-          <Container>
-            {/* Menggunakan kelas 'display-5', 'fw-bold', 'lead', 'text-muted' dari Bootstrap */}
-            <div className="text-center mb-5">
-              <Badge bg="primary" className="mb-3 px-3 py-2">
-                TERBARU
-              </Badge>
-              <h2 className="display-5 fw-bold">Berita Sekolah</h2>
-              <p className="lead text-muted">
-                Kabar dan informasi terbaru dari kami
-              </p>
-            </div>
-
-            <Row className="g-4">
-              {newsData.map((news, i) => (
-                <Col md={4} key={i}>
-                  {/* Menambahkan kelas 'styles.newsCard' untuk efek hover */}
-                  <Card
-                    className={`${styles.newsCard} h-100 border-0 shadow-sm`}
-                  >
-                    <Card.Body className="d-flex flex-column p-4">
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <Badge bg={news.color} className="px-3 py-2">
-                          {news.category}
-                        </Badge>
-                        <small className="text-muted">{news.date}</small>
-                      </div>
-                      <Card.Title className={`${styles.newsTitle} mb-3`}>
-                        {news.title}
-                      </Card.Title>
-                      <Card.Text
-                        className={`${styles.newsExcerpt} mb-4 flex-grow-1`}
-                      >
-                        {news.excerpt}
-                      </Card.Text>
-                      <LinkContainer to={news.slug}>
-                        {/* Mengganti panah teks dengan Ikon Bootstrap */}
-                        <Button
-                          variant="link"
-                          className={`${styles.newsButton} p-0 text-decoration-none fw-bold`}
-                        >
-                          Baca Selengkapnya <ArrowRight className="ms-1" />
-                        </Button>
+    <div className={styles.pageWrapper}>
+      
+      {/* 1. HERO SECTION */}
+      <section className={styles.heroSection}>
+        <Carousel fade controls={false} indicators={false} interval={6000} pause={false}>
+          {heroSlides.map((slide) => (
+            <Carousel.Item key={slide.id} className={styles.heroItem}>
+              <div className={styles.heroBg}>
+                <img className={styles.heroImg} src={slide.image} alt={slide.title} />
+                <div className={styles.heroOverlay}></div>
+              </div>
+              <Container className="h-100 position-relative z-2">
+                <div className={styles.heroContent}>
+                  <Fade direction="up" triggerOnce cascade damping={0.2}>
+                    <span className={styles.heroBadge}>MTs ROUDLOTUSH SHOLIHIN</span>
+                    <h1 className={styles.heroTitle}>{slide.title}</h1>
+                    <p className={styles.heroSubtitle}>{slide.subtitle}</p>
+                    <div className="d-flex justify-content-center gap-3">
+                      <LinkContainer to="/ppdb">
+                        <button className={`${styles.btnCustom} ${styles.btnGold}`}>
+                          Daftar Sekarang <ArrowUpRight className="ms-2"/>
+                        </button>
                       </LinkContainer>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        </section>
-      </Fade>
-
-      {/* === PROGRAM SEKOLAH === */}
-      <Fade direction="up" triggerOnce>
-        {/* Menggunakan 'py-5', 'bg-dark', 'text-white' dari Bootstrap */}
-        <section className="py-5 bg-dark text-white">
-          <Container>
-            <Row className="align-items-center g-5">
-              <Col lg={5} className="mb-4">
-                <Badge bg="light" text="dark" className="mb-3 px-3 py-2">
-                  PROGRAM UNGGULAN
-                </Badge>
-                {/* Menggunakan kelas 'display-5', 'fw-bold', 'lead' dari Bootstrap */}
-                <h2 className="display-5 fw-bold mb-4">
-                  School of Tahfizh, Research, and Entrepreneurship
-                </h2>
-                <p className="lead mb-3">
-                  Membekali peserta didik dengan tiga pilar utama yang
-                  mendukung potensi akademik dan karakter islami.
-                </p>
-                <p className="text-white-50 mb-4">
-                  Didukung oleh laboratorium integratif dan lingkungan belajar
-                  inovatif yang menginspirasi.
-                </p>
-                <div className="d-flex gap-3">
-                  <Button
-                    variant="light"
-                    size="lg"
-                    className={`${styles.joinButton} rounded-pill px-4 fw-bold`}
-                  >
-                    Bergabung Sekarang
-                  </Button>
-                  <Button
-                    variant="outline-light"
-                    size="lg"
-                    className="rounded-pill px-4"
-                  >
-                    Lihat Detail
-                  </Button>
+                      <LinkContainer to="/profil">
+                        <button className={`${styles.btnCustom} ${styles.btnOutlineWhite}`}>
+                          Profil Sekolah
+                        </button>
+                      </LinkContainer>
+                    </div>
+                  </Fade>
                 </div>
-              </Col>
+              </Container>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
 
-              <Col lg={7}>
-                <Row className="g-4">
-                  {programsData.map((program, i) => (
-                    <Col sm={6} key={i}>
-                      <Card
-                        className={`${styles.programCard} border-0 overflow-hidden h-100`}
-                      >
-                        <div className={styles.programImageWrapper}>
-                          <Card.Img
-                            src={program.img}
-                            alt={program.title}
-                            className={styles.programImage}
-                          />
-                          <div className={styles.programOverlay}>
-                            <div className={styles.programContent}>
-                              <h5 className={styles.programTitle}>
-                                {program.title}
-                              </h5>
-                              <p className={styles.programDesc}>
-                                {program.description}
-                              </p>
-                              <a href="#" className={styles.programLink}>
-                                Lihat Detail <ArrowRight className="ms-1" />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </Fade>
-
-      {/* === PROGRAM BEASISWA === */}
-      <Fade direction="up" triggerOnce>
-        {/* Menggunakan 'py-5' dan 'bg-white' */}
-        <section className="py-5 bg-white">
-          <Container>
-            <Row className="align-items-center g-5">
-              <Col md={5} className="mb-4 mb-md-0">
-                <Badge bg="success" className="mb-3 px-3 py-2">
-                  BEASISWA
-                </Badge>
-                <h2 className="display-5 fw-bold mb-4">Program Beasiswa</h2>
-                <p className="lead text-muted mb-4">
-                  Kami menyediakan berbagai jalur beasiswa bagi siswa
-                  berprestasi dan dhuafa agar pendidikan berkualitas dapat
-                  diakses semua kalangan.
-                </p>
-                {/* Menggunakan Ikon Bootstrap & menghapus list-style */}
-                <ul className={`${styles.beasiswaList} list-unstyled fs-5 mb-4`}>
-                  <li className="mb-2">
-                    <CheckCircleFill className="text-success me-2" />
-                    Beasiswa Penuh hingga 100%
-                  </li>
-                  <li className="mb-2">
-                    <CheckCircleFill className="text-success me-2" />
-                    Proses Seleksi Transparan
-                  </li>
-                  <li>
-                    <CheckCircleFill className="text-success me-2" />
-                    Pendampingan Akademik
-                  </li>
-                </ul>
-                <Button
-                  variant="success"
-                  size="lg"
-                  className={`${styles.beasiswaButton} rounded-pill px-4 fw-bold`}
-                >
-                  Info Beasiswa
-                </Button>
-              </Col>
-
-              <Col md={7}>
-                {/* Kartu beasiswa kustom Anda tetap dipertahankan */}
-                <Row className="g-4">
-                  <Col sm={6}>
-                    <div
-                      className={`${styles.beasiswaCard} position-relative overflow-hidden rounded-4 shadow`}
-                    >
-                      <img
-                        src="https://source.unsplash.com/500x350/?quran,reading"
-                        alt="Jalur Dhuafa"
-                        className={styles.beasiswaImage}
-                      />
-                      <div className={styles.beasiswaOverlay}>
-                        <div className={styles.beasiswaContent}>
-                          <h4 className={styles.beasiswaTitle}>Jalur Dhuafa</h4>
-                          <p className={styles.beasiswaText}>
-                            Untuk siswa kurang mampu dengan potensi akademik
-                            baik
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={6}>
-                    <div
-                      className={`${styles.beasiswaCard} position-relative overflow-hidden rounded-4 shadow`}
-                    >
-                      <img
-                        src="https://source.unsplash.com/500x350/?trophy,award"
-                        alt="Jalur Prestasi"
-                        className={styles.beasiswaImage}
-                      />
-                      <div className={styles.beasiswaOverlay}>
-                        <div className={styles.beasiswaContent}>
-                          <h4 className={styles.beasiswaTitle}>Jalur Prestasi</h4>
-                          <p className={styles.beasiswaText}>
-                            Untuk siswa berprestasi di bidang akademik &
-                            non-akademik
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </Fade>
-
-      {/* === UNLOCK POTENTIAL === */}
-      <Fade direction="up" triggerOnce>
-        <section className="py-5 bg-light">
-          <Container>
-            <Row className="align-items-center g-5">
-              <Col lg={6} className="mb-4 mb-lg-0">
-                <div className={styles.potentialImageWrapper}>
+      {/* 2. ABOUT YAYASAN */}
+      <section className={styles.aboutSection}>
+        <Container>
+          <Row className="align-items-center gx-lg-5">
+            <Col lg={6} className="mb-5 mb-lg-0 position-relative">
+              <Fade direction="left" triggerOnce>
+                <div className={styles.aboutImgWrapper}>
                   <img
-                    src="https://source.unsplash.com/700x500/?education,students"
-                    alt="Galeri Siswa"
-                    className={`${styles.potentialImage} img-fluid rounded-4 shadow-lg`}
+                    src="https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?q=80&w=1000"
+                    alt="Suasana Belajar"
+                    className={styles.aboutImg}
                   />
-                  <div className={styles.imageAccent}></div>
+                  <div className={styles.experienceBadge}>
+                    <span>EST.</span>
+                    <strong>2023</strong>
+                  </div>
+                  {/* Decorative Element */}
+                  <div className={styles.dotPattern}></div>
                 </div>
-              </Col>
-              <Col lg={6}>
-                <Badge bg="warning" text="dark" className="mb-3 px-3 py-2">
-                  PRESTASI
-                </Badge>
-                <h2 className="display-5 fw-bold mb-4">
-                  Unlock Your Potential, Be an Incredible Student!
+              </Fade>
+            </Col>
+            <Col lg={6}>
+              <Fade direction="right" triggerOnce>
+                <span className={styles.sectionLabel}>TENTANG KAMI</span>
+                <h2 className={styles.sectionHeading}>
+                  Membangun Karakter,<br />
+                  <span className="text-muted">Mencerdaskan Kehidupan.</span>
                 </h2>
-                <p className="lead mb-3">
-                  Kami berkomitmen memberikan layanan pendidikan terbaik agar
-                  setiap peserta didik dapat berkembang secara optimal dengan
-                  bimbingan guru profesional.
+                <p className={styles.leadText}>
+                  MTs Roudlotush Sholihin berdiri di atas fondasi nilai Islam yang kokoh.
+                  Kami hadir tidak hanya sebagai tempat belajar, tetapi sebagai ekosistem
+                  tumbuh kembang yang memadukan kecerdasan intelektual dengan kemuliaan akhlak.
                 </p>
-                <p className="text-muted mb-5">
-                  Dukungan fasilitas digital, kurikulum modern, dan bimbingan
-                  karakter menjadikan kami tempat terbaik untuk belajar dan
-                  tumbuh menjadi generasi unggul.
-                </p>
+                <LinkContainer to="/profil">
+                  <div className={styles.readMoreLink}>
+                    BACA SEJARAH LENGKAP <ArrowRight />
+                  </div>
+                </LinkContainer>
+              </Fade>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
-                {/* --- DESAIN ULANG KARTU INFO --- */}
-                <Row className="g-4">
-                  {infoData.map((info, i) => (
-                    <Col sm={6} key={i}>
-                      {/* Menggunakan d-flex untuk tata letak ikon + teks */}
-                      <div className="d-flex align-items-start h-100">
-                        <div
-                          className={`${styles.infoIconWrapper} flex-shrink-0`}
-                        >
-                          {info.icon}
+      {/* 3. PRINCIPAL WELCOME */}
+      <section className={styles.principalSection}>
+        <Container>
+           <Fade direction="up" triggerOnce>
+             <div className={styles.principalCard}>
+                  <Row>
+                    <Col md={12} className="text-center mb-4">
+                        <div className={styles.principalImgWrapper}>
+                          <img
+                            src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800"
+                            alt="Kepala Madrasah"
+                            className={styles.principalImg}
+                          />
                         </div>
-                        <div className="ms-3">
-                          <h5 className="fw-bold mb-1">{info.title}</h5>
-                          <p className="text-muted mb-0">
-                            {info.description}
-                          </p>
-                        </div>
-                      </div>
+                        <h5 className="fw-bold mt-3 mb-1 font-serif">Azis Zulfian Adisianto, S.S., M.A.</h5>
+                        <span className="text-muted small text-uppercase ls-2">Kepala Madrasah</span>
                     </Col>
-                  ))}
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </Fade>
+                    <Col md={12}>
+                        <div className={styles.principalContent}>
+                          <p className={styles.principalGreeting}>Bismillahirrahmanirrahim<br/>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                          
+                          <p className={styles.principalText}>
+                            Alhamdulillahi rabbil 'alamin, segala puji hanya milik Allah SWT, Tuhan semesta alam. 
+                            Shalawat serta salam semoga senantiasa tercurah kepada junjungan kita Nabi Muhammad SAW, 
+                            keluarga, sahabat, dan seluruh umatnya yang istiqamah mengikuti ajarannya hingga akhir zaman.
+                          </p>
+                          
+                          <p className={styles.principalText}>
+                            Dengan penuh rasa syukur, kami persembahkan kehadiran Website MTs Roudlotush Sholihin Ngemplak Sleman DIY 
+                            sebagai salah satu media informasi, komunikasi, dan publikasi madrasah. Kehadiran website ini merupakan bentuk 
+                            komitmen kami dalam mewujudkan madrasah yang adaptif terhadap perkembangan teknologi dan informasi di era digital, 
+                            tanpa meninggalkan nilai-nilai keislaman dan karakter kepesantrenan.
+                          </p>
+                          
+                          <p className={styles.principalText}>
+                            Website ini diharapkan menjadi jembatan antara madrasah, peserta didik, orang tua, alumni, serta masyarakat luas 
+                            untuk mengenal lebih dekat berbagai kegiatan, program unggulan, dan dinamika pendidikan di MTs Roudlotush Sholihin. 
+                            Melalui laman ini, kami ingin menghadirkan wajah madrasah yang ramah, terbuka, dan terus berinovasi dalam mencetak 
+                            generasi berilmu, berakhlakul karimah, dan berdaya saing.
+                          </p>
+                          
+                          <p className={styles.principalText}>
+                            Kami juga mengajak seluruh warga madrasah untuk menjadikan website ini sebagai sarana berbagi inspirasi, karya, dan prestasi. 
+                            Semoga dengan kehadiran website ini, segala aktivitas dan cita-cita kita dalam mencerdaskan generasi Islam yang beriman, 
+                            berilmu, dan beramal dapat terwujud dengan ridha Allah SWT.
+                          </p>
+                          
+                          <p className={styles.principalText}>
+                            Terima kasih kepada seluruh tim, guru, dan tenaga kependidikan yang telah berperan aktif dalam pengembangan website ini. 
+                            Kritik dan saran yang membangun sangat kami harapkan demi penyempurnaan layanan informasi madrasah ke depan.
+                          </p>
+                          
+                          <p className={styles.principalClosing}>Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                        </div>
+                    </Col>
+                  </Row>
+             </div>
+           </Fade>
+        </Container>
+      </section>
 
-      {/* === CTA SECTION === */}
-      <Fade direction="up" triggerOnce>
-        {/* Menambahkan 'py-5' */}
-        <section className={`${styles.ctaSection} py-5 text-center text-white`}>
-          <Container>
-            <h2 className="display-5 fw-bold mb-4">
-              Siap Bergabung dengan Kami?
-            </h2>
-            <p className="lead mb-5 mx-auto" style={{ maxWidth: "600px" }}>
-              Daftarkan putra-putri Anda sekarang dan wujudkan masa depan
-              gemilang bersama MTSS Roudlotush Sholihin
-            </p>
-            <div className="d-flex gap-3 justify-content-center flex-wrap">
-              {/* Menggunakan LinkContainer untuk navigasi */}
-              <LinkContainer to="/pendaftaran">
-                <Button
-                  variant="light"
-                  size="lg"
-                  className="rounded-pill px-5 py-3 fw-bold"
-                >
-                  <PencilSquare className="me-2" /> Daftar Sekarang
-                </Button>
-              </LinkContainer>
-              <Button
-                variant="outline-light"
-                size="lg"
-                className="rounded-pill px-5 py-3"
-              >
-                <Telephone className="me-2" /> Hubungi Kami
-              </Button>
+      {/* 4. PRESTASI (Bento Grid) */}
+      <section className={styles.prestasiSection}>
+        <Container>
+          <div className="d-flex justify-content-between align-items-end mb-5">
+            <div>
+              <span className={styles.sectionLabel}>HALL OF FAME</span>
+              <h2 className={styles.sectionHeading}>Jejak Juara Santri</h2>
             </div>
-          </Container>
-        </section>
-      </Fade>
+            <div className="d-flex justify-content-center gap-3">
+                     <LinkContainer to="/prestasi">
+                <button className={`${styles.btnCustom} ${styles.btnOutlineDark} ${styles.btnOutlineDark} d-none d-md-block`}>
+                  Lihat Semua Prestasi
+                </button>
+            </LinkContainer>
+                    </div>
+            
+          </div>
+          
+          <div className={styles.bentoGrid}>
+            <Fade cascade damping={0.1} triggerOnce>
+              {achievementsData.map((item) => (
+                  <div className={styles.bentoItem} key={item.id}>
+                      <img src={item.image} alt={item.title} className={styles.achImg} />
+                      <div className={styles.achOverlay}>
+                          <div className={styles.achContent}>
+                            <span className={styles.achBadge}>{item.level}</span>
+                            <h4 className={styles.achTitle}>{item.title}</h4>
+                            <p className={styles.achDesc}>{item.desc}</p>
+                          </div>
+                      </div>
+                  </div>
+              ))}
+            </Fade>
+          </div>
+          
+          <div className="d-md-none text-center mt-4">
+             <LinkContainer to="/prestasi">
+                <button className={`${styles.btnCustom} ${styles.btnOutlineDark}`}>Lihat Semua</button>
+             </LinkContainer>
+          </div>
+        </Container>
+      </section>
+
+      {/* 5. FASILITAS */}
+      <section className={styles.facilitySection}>
+        <Container>
+          <Row className="align-items-center mb-5">
+            <Col lg={6}>
+                 <span className={styles.sectionLabel}>INFRASTRUKTUR</span>
+                 <h2 className={styles.sectionHeading}>Fasilitas Modern</h2>
+            </Col>
+            <Col lg={6}>
+                 <p className="text-muted lead mb-0">
+                    Lingkungan belajar yang kondusif didukung fasilitas lengkap untuk menunjang potensi akademik dan non-akademik santri.
+                 </p>
+            </Col>
+          </Row>
+
+          <div className={styles.facilityGrid}>
+            <Fade cascade damping={0.1} triggerOnce>
+              {facilitiesData.map((item, i) => (
+                <div className={styles.facilityCard} key={i}>
+                  <div className={styles.facIconWrapper}>{item.icon}</div>
+                  <h4 className={styles.facTitle}>{item.title}</h4>
+                  <p className="text-muted small mt-2 mb-0">{item.desc}</p>
+                </div>
+              ))}
+            </Fade>
+          </div>
+        </Container>
+      </section>
+
+      {/* 6. KEPESANTRENAN  */}
+      <section className={styles.pesantrenSection}>
+        <Container className="position-relative z-2">
+          <Row className="align-items-center mb-5">
+            <Col lg={6}>
+               <span className={styles.sectionLabelAccent}>KEPESANTRENAN</span>
+               <h2 className="display-4 fw-bold mb-4 font-serif">Taman Orang Saleh.</h2>
+            </Col>
+            <Col lg={6}>
+                <p className="lead opacity-75">
+                  Mengintegrasikan kurikulum merdeka dengan kurikulum pesantren salaf.
+                  Mewujudkan santri penghafal Qur'an yang <strong>Amali</strong> dan <strong>Berwawasan Global</strong>.
+                </p>
+            </Col>
+          </Row>
+
+          <div className={styles.darkCardGrid}>
+             <Fade cascade damping={0.2} direction="up" triggerOnce>
+              <div className={styles.darkCard}>
+                <StarFill className={styles.accentIcon} size={32}/>
+                <h4 className="text-white fw-bold mt-4">Tahfidz Bersanad</h4>
+                <p className="text-white-50">Program hafalan Al-Qur'an dibimbing pengajar bersanad.</p>
+              </div>
+              <div className={styles.darkCard}>
+                <Book className={styles.accentIcon} size={32}/>
+                <h4 className="text-white fw-bold mt-4">Kitab Kuning</h4>
+                <p className="text-white-50">Kajian kitab turats menggunakan metode Al-Miftah Lil Ulum.</p>
+              </div>
+              <div className={styles.darkCard}>
+                <CheckCircleFill className={styles.accentIcon} size={32}/>
+                <h4 className="text-white fw-bold mt-4">Pesantren Ramah</h4>
+                <p className="text-white-50">Lingkungan aman dan menyenangkan untuk karakter santri.</p>
+              </div>
+            </Fade>
+          </div>
+        </Container>
+      </section>
+
+      {/* 7. KEUNGGULAN */}
+      <section className={styles.featureSection}>
+        <Container>
+          <div className="text-center mb-5">
+            <span className={styles.sectionLabel}>KENAPA KAMI?</span>
+            <h2 className={styles.sectionHeading}>Alasan Memilih Kami</h2>
+          </div>
+
+          <Row className="g-4">
+            {featuresData.map((item, i) => (
+              <Col lg={3} md={6} key={i}>
+                <Fade delay={i * 100} triggerOnce>
+                  <div className={styles.featureCard}>
+                     <div className={styles.featImgWrap}>
+                        <img src={item.image} alt={item.title} />
+                        <div className={styles.featNumber}>{i+1}</div>
+                     </div>
+                     <h5 className={styles.featTitle}>{item.title}</h5>
+                     <p className="text-muted small px-2">{item.desc}</p>
+                  </div>
+                </Fade>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* 8. ACADEMIC PROGRAM */}
+      <section className={styles.academicSection}>
+        <Container fluid className="px-0">
+          <Row className="g-0">
+            <Col lg={3} className={styles.academicIntro}>
+                <Slide direction="left" triggerOnce>
+                  <div>
+                    <span className={styles.sectionLabel}>KURIKULUM</span>
+                    <h2 className={styles.sectionHeading}>Program<br />Unggulan</h2>
+                    <p className="text-dark opacity-75 mb-4">Menyiapkan bekal akademik dan keterampilan masa depan.</p>
+                    <LinkContainer to="/program/akademik">
+                      <button className={`${styles.btnCustom} ${styles.btnOutlineDark}`}>Lihat Kurikulum</button>
+                    </LinkContainer>
+                  </div>
+                </Slide>
+            </Col>
+            {schoolPrograms.map((prog, i) => (
+              <Col lg={2} md={4} sm={6} key={i} className="position-relative">
+                  <div className={styles.tileCard}>
+                    <img src={prog.img} alt={prog.title} className={styles.tileImage} />
+                    <div className={styles.tileOverlay}>
+                        <h4 className={styles.tileTitle}>{prog.title}</h4>
+                        <div className={styles.tileContentHid}>
+                           <p className={styles.tileText}>{prog.description}</p>
+                           <ArrowRight className="text-white" />
+                        </div>
+                    </div>
+                  </div>
+              </Col>
+            ))}
+             <Col lg={1} className={styles.moreProgramsBtn}>
+                <LinkContainer to="/program" style={{cursor:'pointer', width: '100%', height: '100%'}}>
+                   <div className="d-flex flex-column align-items-center justify-content-center h-100 w-100 text-white">
+                      <span className="text-center small fw-bold ls-2">MORE<br/>PROGRAMS</span>
+                      <ArrowRight className="mt-2"/>
+                   </div>
+                </LinkContainer>
+             </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* 9. NEWS */}
+      <section className={styles.newsSection}>
+        <Container>
+          <div className="d-flex justify-content-between align-items-center mb-5">
+            <div>
+               <span className={styles.sectionLabel}>UPDATE TERKINI</span>
+               <h2 className={styles.sectionHeading}>Kabar Madrasah</h2>
+            </div>
+            <LinkContainer to="/berita">
+              <span className={styles.linkArrow}>Lihat Semua <ArrowRight/></span>
+            </LinkContainer>
+          </div>
+          <Row className="g-4">
+            {newsData.map((news, i) => (
+              <Col lg={4} md={6} key={news.id || i}>
+                <Fade delay={i * 100} triggerOnce>
+                  <div 
+                    className={styles.newsCard}
+                    onClick={() => navigate(news.slug)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                     <div className={styles.newsImgContainer}>
+                        <img src={news.image} alt={news.title} />
+                        <div className={styles.dateBadge}>
+                          <span className="fw-bold d-block fs-4">{news.date.split(" ")[0]}</span>
+                          <span className="small text-uppercase">{news.date.split(" ")[1]}</span>
+                        </div>
+                     </div>
+                     <div className={styles.newsBody}>
+                        <span className={styles.newsCat}>{news.category}</span>
+                        <h4 className={styles.newsTitle}>{news.title}</h4>
+                        <span className={styles.readMoreSmall}>Baca Selengkapnya</span>
+                     </div>
+                  </div>
+                </Fade>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* 10. CTA */}
+      <section className={styles.ctaSection}>
+         <div className={styles.ctaBg}></div>
+         <Container className="position-relative z-2 text-center text-white">
+            <Fade direction="up" triggerOnce>
+              <h2 className={styles.ctaHeading}>Siap Bergabung Bersama Kami?</h2>
+              <p className="lead mb-5 opacity-90">Wujudkan masa depan gemilang dengan pendidikan karakter dan prestasi.</p>
+              <div className="d-flex justify-content-center gap-3">
+                  <LinkContainer to="/ppdb">
+                      <button className={`${styles.btnCustom} ${styles.btnGold}`}>PPDB Online</button>
+                  </LinkContainer>
+                  <LinkContainer to="/kontak">
+                      <button className={`${styles.btnCustom} ${styles.btnOutlineWhite}`}>Hubungi Kami</button>
+                  </LinkContainer>
+              </div>
+            </Fade>
+         </Container>
+      </section>
+
     </div>
   );
 }

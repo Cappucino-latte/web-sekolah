@@ -14,4 +14,7 @@ code {
     monospace;
 }
 
-
+/* Fix global untuk button agar tidak selalu block */
+button {
+  display: inline-block !important;
+}

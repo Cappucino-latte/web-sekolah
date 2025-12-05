@@ -1,29 +1,152 @@
-/* src/components/Footer.module.css */
+/* --- VARIABLES --- */
+:root {
+  --footer-bg: #ffee99;    /* Deep Navy Blue - Senada dengan Navbar */
+  --footer-text: #000000;  /* Off-white / Light Grey */
+  --accent-gold: #24771b;  /* Gold Accent */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
 
 .footerSection {
-    /* Perkiraan warna kuning/emas dari screenshot */
-    background-color: #0f1736;
-    color: #ffffff; /* Teks hitam/gelap agar terbaca */
-    padding: 50px 0;
-    margin-top: 50px; /* Jarak dari konten di atasnya */
-  }
-  
-  .footerLogo {
-    max-width: 180px; /* Ukuran logo sekolah */
-    margin-bottom: 20px;
-  }
-  
-  .contactInfo {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
-  .contactInfo p {
-    margin-bottom: 5px; /* Jarak antar baris alamat */
-  }
-  
-  .accreditationLogo {
-    max-height: 70px; /* Menyamakan tinggi logo-logo partner */
-    margin-right: 20px;
-    margin-bottom: 10px;
-  }
+  background-color: var(--footer-bg);
+  color: #000000;
+  padding: 5rem 0 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  border-top: 5px solid var(--accent-gold); /* Garis aksen emas di atas */
+}
+
+/* --- BRANDING (KIRI) --- */
+.footerLogo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.brandName {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f3915;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.schoolDesc {
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+}
+
+/* --- HEADINGS --- */
+.footerHeading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footerHeading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 30px;
+  height: 2px;
+  background-color: #204b1c;
+  opacity: 0.3;
+}
+
+/* --- LINKS LIST --- */
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkItem {
+  margin-bottom: 12px;
+}
+
+.footerLink {
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerLink:hover {
+  color: var(--accent-gold);
+  padding-left: 5px; /* Efek geser saat hover */
+}
+
+/* --- CONTACT INFO --- */
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.contactIcon {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* --- SOCIAL & ACCREDITATION --- */
+.socialWrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.socialBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f681d;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.socialBtn:hover {
+  background: var(--accent-gold);
+  color: var(--footer-bg);
+  transform: translateY(-3px);
+}
+
+.accreditationBadge {
+  background: #1e6122;
+  padding: 8px 15px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 800;
+  color: var(--footer-bg);
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  border-left: 4px solid var(--accent-gold);
+}
+
+/* --- COPYRIGHT BOTTOM --- */
+.copyrightSection {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}

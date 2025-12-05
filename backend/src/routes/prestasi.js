@@ -32,18 +32,15 @@ router.get("/", async (req, res) => {
 // ==========================
 router.post("/upload", upload.single("file"), async (req, res) => {
   try {
-    const { judul, kategori, tanggal, deskripsi } = req.body;
+    const { judul, kategori, tanggal, deskripsi, tingkat } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ error: "File tidak ditemukan" });
     }
 
-    // Format tanggal agar sesuai Supabase DATE
     const formattedDate = new Date(tanggal).toISOString().split("T")[0];
 
-    // Upload file ke Supabase Storage
     const fileName = `prestasi/${Date.now()}-${req.file.originalname}`;
-
     const fileBuffer = fs.readFileSync(req.file.path);
 
     const { error: uploadError } = await supabase.storage
@@ -52,16 +49,14 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         contentType: req.file.mimetype,
       });
 
-    fs.unlinkSync(req.file.path); // hapus file lokal
+    fs.unlinkSync(req.file.path);
 
     if (uploadError) throw uploadError;
 
-    // Ambil URL publik
     const { data: publicData } = supabase.storage
       .from("prestasi")
       .getPublicUrl(fileName);
 
-    // Insert ke database
     const { data: inserted, error: insertError } = await supabase
       .from("prestasi")
       .insert([
@@ -70,6 +65,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
           kategori,
           tanggal: formattedDate,
           deskripsi,
+          tingkat,          // <-- tambahkan ini
           gambar: publicData.publicUrl,
         },
       ])
@@ -87,6 +83,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
     res.status(500).json({ error: "Upload gagal" });
   }
 });
+
 
 
 // ==========================
